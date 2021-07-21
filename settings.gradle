@@ -1,0 +1,2 @@
+rootProject.name = "PHMST72021"
+include ':app'
