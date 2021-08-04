@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#abdbe3"
+    tools:context=".AddMeds"
+    >
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/AddMedsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#063970"
+            android:gravity="center"
+
+            android:text="Add Medication"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/MedNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Medication Name:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/MedNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+
+            android:hint="Enter Medication Name"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/DocNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Doctor's Name:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/DocNameInput"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+
+            android:hint="Enter your doctor's name"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/AmountGivenTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Amount Given:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/AmountGivenInput"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+
+            android:hint="Enter Amount"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+
+            android:ems="9"
+            android:inputType="number"
+            />
+
+        <Spinner
+            android:id="@+id/Amount_spinner"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/DosageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Dosage Amount:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/DosageInput"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+
+            android:hint="Enter Amount"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+
+            android:ems="9"
+            android:inputType="number"
+            />
+
+        <Spinner
+            android:id="@+id/Dosage_spinner"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/NotesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Notes:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+        <EditText
+            android:id="@+id/NotesInput"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAlignment="textStart"
+            android:layout_marginRight="10dp"
+
+
+            android:hint="Enter any notes for the medication.
+                    i.e. How to take it; when to take it etc."
+            android:inputType="textMultiLine"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/DateGivenTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Date Given"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/GivenDateInput"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="date"
+            android:hint="DD/MM/YYYY"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/ExpiryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Expiration Date"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/ExpiryDateInput"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:inputType="date"
+            android:hint="DD/MM/YYYY"/>
+    </TableRow>
+
+    <Button
+        android:id="@+id/AddMedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+
+        android:text="Add Medication"
+
+        android:layout_marginTop="40dp"
+        />
+
+</LinearLayout>

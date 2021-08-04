@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Medication"
+        android:background="#abdbe3"
+    >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        >
+        <TextView
+            android:id="@+id/MedsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#063970"
+            android:gravity="center"
+
+            android:text="Medication Intake"
+
+            android:textColor="@android:color/white"
+
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+
+    <TableRow
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/MedsImgBtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:padding="30dp"
+            android:scaleType="fitCenter"
+
+            android:background="@drawable/medspic"
+            android:backgroundTint="#1e81b0"
+            android:backgroundTintMode="multiply"
+            />
+    </TableRow>
+        <TextView
+            android:id="@+id/Medstext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+
+            android:text="Add/Edit Medications"
+
+            android:textColor="#063970"
+
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/AlarmsImgBtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:padding="30dp"
+            android:scaleType="fitCenter"
+
+            android:background="#1e81b0"
+            android:src="@android:drawable/ic_lock_idle_alarm" />
+    </TableRow>
+
+        <TextView
+            android:id="@+id/Alarmstext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+
+            android:text="Add/Edit Alarms"
+
+            android:textColor="#063970"
+
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+</LinearLayout>
