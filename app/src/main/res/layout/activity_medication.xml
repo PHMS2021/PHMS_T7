@@ -15,37 +15,32 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:background="@color/white"
         >
         <TextView
-            android:id="@+id/MedsTitle"
+            android:id="@+id/MedsIntakeTitle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="#063970"
             android:gravity="center"
 
             android:text="Medication Intake"
-
             android:textColor="@android:color/white"
-
             android:textSize="20sp"
             android:textStyle="bold"
             />
     </TableRow>
 
-
     <TableRow
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center">
 
         <ImageButton
             android:id="@+id/MedsImgBtn"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:padding="30dp"
@@ -56,19 +51,17 @@
             android:backgroundTintMode="multiply"
             />
     </TableRow>
-        <TextView
-            android:id="@+id/Medstext"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
 
-            android:text="Add/Edit Medications"
+    <TextView
+        android:id="@+id/MedsAddEditTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
 
-            android:textColor="#063970"
-
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
+        android:text="Add/Edit Medications"
+        android:textColor="#063970"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TableRow
         android:layout_width="wrap_content"
@@ -79,8 +72,8 @@
 
         <ImageButton
             android:id="@+id/AlarmsImgBtn"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:padding="30dp"
@@ -90,17 +83,16 @@
             android:src="@android:drawable/ic_lock_idle_alarm" />
     </TableRow>
 
-        <TextView
-            android:id="@+id/Alarmstext"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
+    <TextView
+        android:id="@+id/AlarmsAddEditTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
 
-            android:text="Add/Edit Alarms"
+        android:text="Add/Edit Alarms"
 
-            android:textColor="#063970"
+        android:textColor="#063970"
 
-            android:textSize="20sp"
-            android:textStyle="bold"
-            />
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </LinearLayout>

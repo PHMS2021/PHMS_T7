@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">PHMST72021</string>
+
+    <string-array name="MedMeasurements">
+        <item>select</item>
+        <item>mg</item>
+        <item>g</item>
+        <item>mL</item>
+        <item>L</item>
+    </string-array>
+
 </resources>
+

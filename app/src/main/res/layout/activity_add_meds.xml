@@ -96,13 +96,78 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
 
-            android:hint="Enter your doctor's name"
+            android:hint="Enter Your Doctor's Name"
             android:textColor="#063970"
             android:textSize="17sp"
             android:textStyle="bold"
             />
     </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
 
+        <TextView
+            android:id="@+id/DateGivenTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Date Medication Given:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/DateGivenInput"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="150dp"
+
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:textStyle="bold"
+            android:hint="Select Date"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+        <TextView
+            android:id="@+id/ExpiryDateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Expiration Date:"
+            android:textColor="#063970"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/ExpiryDateInput"
+            android:layout_marginLeft="10dp"
+            android:layout_width="150dp"
+            android:textStyle="bold"
+
+            android:layout_marginRight="10dp"
+            android:hint="Select Date"/>
+    </TableRow>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -126,7 +191,7 @@
 
         <EditText
             android:id="@+id/AmountGivenInput"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -138,12 +203,12 @@
             android:textStyle="bold"
 
             android:ems="9"
-            android:inputType="number"
+            android:inputType="numberSigned"
             />
 
         <Spinner
             android:id="@+id/Amount_spinner"
-            android:layout_width="80dp"
+            android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             />
@@ -172,7 +237,7 @@
 
         <EditText
             android:id="@+id/DosageInput"
-            android:layout_width="170dp"
+            android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -184,12 +249,12 @@
             android:textStyle="bold"
 
             android:ems="9"
-            android:inputType="number"
+            android:inputType="numberSigned"
             />
 
         <Spinner
             android:id="@+id/Dosage_spinner"
-            android:layout_width="80dp"
+            android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             />
@@ -210,7 +275,7 @@
             android:layout_height="40dp"
             android:gravity="center"
 
-            android:text="Notes:"
+            android:text="General Notes:"
             android:textColor="#063970"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -231,7 +296,6 @@
             android:textAlignment="textStart"
             android:layout_marginRight="10dp"
 
-
             android:hint="Enter any notes for the medication.
                     i.e. How to take it; when to take it etc."
             android:inputType="textMultiLine"
@@ -241,63 +305,6 @@
             />
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-
-        <TextView
-            android:id="@+id/DateGivenTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:gravity="center"
-
-            android:text="Date Given"
-            android:textColor="#063970"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:id="@+id/GivenDateInput"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:inputType="date"
-            android:hint="DD/MM/YYYY"/>
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-
-        <TextView
-            android:id="@+id/ExpiryDate"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:gravity="center"
-
-            android:text="Expiration Date"
-            android:textColor="#063970"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            />
-
-        <EditText
-            android:id="@+id/ExpiryDateInput"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:inputType="date"
-            android:hint="DD/MM/YYYY"/>
-    </TableRow>
 
     <Button
         android:id="@+id/AddMedBtn"
