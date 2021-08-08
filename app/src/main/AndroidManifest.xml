@@ -6,22 +6,25 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContentOnly="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PHMST72021">
-        <activity android:name=".MyAlarms"
-            android:label="Medication"></activity>
-        <activity android:name=".SetAlarms"
-            android:label="Medication"/>
-        <activity android:name=".MyMedications"
-            android:label="Medication"/>
-        <activity android:name=".AddMeds"
-            android:label="Medication"/>
-        <activity android:name=".Medication"
-            android:label="Medication"></activity>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".AddDiet"
+            android:exported="true" />
+        <activity
+            android:name=".UpdateProfile"
+            android:exported="true" />
+        <activity
+            android:name=".Home"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity android:name=".Login"
             android:label="PHMS">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +32,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MyAlarms"
+            android:label="MyAlarms"/>
+        <activity android:name=".SetAlarms"
+            android:label="Medication"/>
+        <activity android:name=".MyMedications"
+            android:label="Medication"/>
+        <activity android:name=".AddMeds"
+            android:label="Medication"/>
+        <activity android:name=".Medication"
+            android:label="Medication"/>
     </application>
 
 </manifest>

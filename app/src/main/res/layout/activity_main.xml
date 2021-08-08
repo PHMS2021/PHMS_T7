@@ -1,18 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:background="#0f3b52"
+
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="100dp">
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:text="Patient"
+                android:textSize="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:text="CareTaker"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+
+        android:layout_marginBottom="20dp"
+        >
+        <EditText
+            android:id="@+id/user_name"
+            android:background="@drawable/round_grey"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:paddingLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="User Name"
+            android:gravity="center"
+            android:textSize="20dp"
+            >
+
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+
+        android:layout_marginBottom="20dp"
+        >
+        <EditText
+            android:id="@+id/password"
+            android:background="@drawable/round_grey"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:paddingLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:textSize="20dp"
+            >
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+
+        android:layout_marginBottom="20dp"
+        >
+       <EditText
+           android:id="@+id/patient_name"
+           android:background="@drawable/round_grey"
+           android:drawableLeft="@drawable/ic_person"
+           android:paddingLeft="10dp"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:textColor="@color/black"
+           android:layout_marginLeft="10dp"
+           android:layout_marginTop="5dp"
+           android:hint="Name of Patient"
+           android:gravity="center"
+           android:textSize="20dp"
+           >
+
+       </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp"
+        >
+        <Spinner
+            android:id="@+id/gender"
+            android:background="@drawable/round_grey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_gender"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:spinnerMode="dropdown"
+            android:gravity="center"
+            >
+
+        </Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp"
+        >
+        <EditText
+            android:id="@+id/age"
+            android:background="@drawable/round_grey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_age"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:layout_marginTop="5dp"
+            android:hint="Age"
+            android:gravity="center"
+            android:textSize="20dp"
+            >
+
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp"
+        >
+        <EditText
+            android:id="@+id/weight"
+            android:background="@drawable/round_grey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_weight"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:hint="Weight"
+            android:gravity="center"
+            android:textSize="20dp"
+            >
+
+        </EditText>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp"
+        >
+        <EditText
+            android:id="@+id/height"
+            android:background="@drawable/round_grey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_height"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Height"
+            android:gravity="center"
+            android:textSize="20dp"
+            >
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/doctors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        >
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addDoctor"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/round_primary"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Add Doctor"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_gravity="center"
+        android:drawableRight="@drawable/ic_add"
+        />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_500"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/white"
+        android:text="Submit"
+        android:textSize="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already a member?"/>
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:onClick="onLoginClick"
+            android:text="Log In"/>
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>
