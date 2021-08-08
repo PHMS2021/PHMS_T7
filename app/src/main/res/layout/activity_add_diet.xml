@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0f3b52"
+    tools:context=".AddDiet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="100dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Diet"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/calory"
+                android:background="@drawable/round_grey"
+                android:drawableLeft="@drawable/ic_baseline_emoji_food_beverage_24"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Daily Caloric InTake"
+                android:inputType="number"
+                android:gravity="center"
+                android:textSize="20dp"
+                >
+
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/water"
+                android:background="@drawable/round_grey"
+                android:drawableLeft="@drawable/ic_baseline_local_drink_24"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Daily Water InTake"
+                android:inputType="number"
+                android:gravity="center"
+                android:textSize="20dp"
+                >
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/daily_food"
+                android:background="@drawable/round_grey"
+                android:drawableTop="@drawable/ic_baseline_food_bank_24"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Daily Food InTake"
+                android:gravity="top"
+                android:textSize="20dp"
+                >
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/recipes"
+                android:background="@drawable/round_grey"
+                android:drawableTop="@drawable/ic_baseline_emoji_food_beverage_24"
+                android:paddingLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Recipes"
+                android:gravity="top"
+                android:textSize="20dp"
+                >
+
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/description"
+                android:background="@drawable/round_grey"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableTop="@drawable/ic_baseline_description_24"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Diet Description"
+                android:gravity="top"
+                >
+
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/articles"
+                android:background="@drawable/round_grey"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableTop="@drawable/ic_baseline_article_24"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Health Articles"
+                android:gravity="top"
+                >
+
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_marginBottom="20dp"
+            >
+            <EditText
+                android:id="@+id/general_notes"
+                android:background="@drawable/round_grey"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableTop="@drawable/ic_baseline_note_24"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="General Notes"
+                android:gravity="top"
+                >
+
+            </EditText>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Submit"
+            android:textSize="20dp"
+            />
+    </LinearLayout>
+
+</ScrollView>

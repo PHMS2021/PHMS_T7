@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/border_add_doctor"
+        >
+    <EditText
+        android:id="@+id/doctor_name"
+        android:background="@drawable/round_grey"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="@color/black"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:hint="Name of Doctor"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+        >
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/visit_date"
+        android:background="@drawable/round_grey"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="@color/black"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:hint="Visit Date"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+        >
+
+    </EditText>
+
+
+    <EditText
+        android:id="@+id/checkup_date"
+        android:background="@drawable/round_grey"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="@color/black"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:hint="Annual Checkup Date"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp"
+      />
+    <Button
+        android:id="@+id/remove_doctor"
+        android:background="@drawable/round_grey"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:text="Remove"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:layout_marginBottom="10dp"
+        />
+</LinearLayout>

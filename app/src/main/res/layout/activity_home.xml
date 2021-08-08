@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/purple_500"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".Home">
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_500"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/white"
+        android:text="Update Profile"
+        android:onClick="onUpdateClick"
+        android:textSize="20dp"
+        />
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_500"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/white"
+        android:text="Delete Account"
+        android:onClick="onDeleteClick"
+        android:textSize="20dp"
+        />
+    <Button
+        android:id="@+id/diet"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="@color/purple_500"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="@color/white"
+        android:onClick="onDietClick"
+        android:text="Add Diet"
+        android:textSize="20dp"
+        />
+
+</LinearLayout>
