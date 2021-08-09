@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Home extends AppCompatActivity {
 
-    Button update,delete, diet;
+    Button update, delete, diet, logout;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Users");
     Intent intent;
@@ -29,6 +29,7 @@ public class Home extends AppCompatActivity {
         update = (Button) findViewById(R.id.update);
         delete = (Button) findViewById(R.id.delete);
         diet = (Button) findViewById(R.id.diet);
+        logout = (Button) findViewById(R.id.LogOut);
     }
     public void onDeleteClick(View view){
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -59,12 +60,19 @@ public class Home extends AppCompatActivity {
         close();
     }
     public void onDietClick(View view){
-        Intent newIntent = new Intent(view.getContext(), com.example.phmst72021.AddDiet.class);
+        Intent newIntent = new Intent(view.getContext(), AddDiet.class);
         newIntent.putExtra("User", user);
         startActivity(newIntent);
         close();
     }
     public void close(){
         this.finish();
+    }
+
+    public void onLogOutClick(View view) {
+        Intent newIntent = new Intent(view.getContext(), Login.class);
+        newIntent.putExtra("User", user);
+        startActivity(newIntent);
+        close();
     }
 }

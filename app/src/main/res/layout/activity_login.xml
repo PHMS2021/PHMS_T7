@@ -4,114 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/purple_500"
+    android:orientation="vertical"
     tools:context=".Login">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:layout_marginVertical="100dp"
-        android:layout_height="match_parent">
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/radiogroup"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_height="100dp">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:text="Patient"
-                android:textSize="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:textColor="@color/white"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:text="CareTaker"
-                android:layout_marginHorizontal="20dp"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-
             android:layout_marginBottom="20dp"
-            >
+            android:paddingLeft="50dp"
+
+            android:paddingRight="50dp">
+
             <EditText
-                android:id="@+id/user_name"
-                android:background="@drawable/round_grey"
-                android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-                android:paddingLeft="10dp"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="User Name"
+                android:background="@drawable/round_grey"
+                android:drawableStart="@drawable/ic_baseline_person_outline_24"
                 android:gravity="center"
-                android:textSize="20dp"
-                >
-
+                android:hint="@string/email_address"
+                android:paddingStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:ems="10"
+                tools:ignore="RtlSymmetry"
+                android:inputType="textEmailAddress">
             </EditText>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-
             android:layout_marginBottom="20dp"
-            >
+            android:paddingLeft="50dp"
+
+            android:paddingRight="50dp">
+
             <EditText
                 android:id="@+id/password"
-                android:background="@drawable/round_grey"
-                android:drawableLeft="@drawable/ic_baseline_lock_24"
-                android:paddingLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/round_grey"
+                android:drawableLeft="@drawable/ic_baseline_lock_24"
+                android:gravity="center"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:gravity="center"
-                android:textSize="20dp"
-                >
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="20dp">
 
             </EditText>
         </LinearLayout>
+
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:textColor="@color/purple_500"
+            android:layout_gravity="center"
             android:layout_marginVertical="10dp"
             android:backgroundTint="@color/white"
-            android:text="Login"
             android:onClick="onSubmit"
-            android:textSize="20dp"
-            />
+            android:text="Login"
+            android:textColor="@color/purple_500"
+            android:textSize="20dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Not a member?"/>
+                android:text="Not a member?  " />
+
             <TextView
                 android:id="@+id/signup"
-                android:layout_width="wrap_content"
-                android:textColor="@color/white"
+                android:layout_width="121dp"
                 android:layout_height="wrap_content"
                 android:onClick="onSignUpClick"
-                android:text="Signup Now"/>
+                android:text="    Signup Now"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 

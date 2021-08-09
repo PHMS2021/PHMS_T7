@@ -2,84 +2,94 @@ package com.example.phmst72021;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 
 public class Login extends AppCompatActivity {
-
+    private static final String TAG = "Account";
+    private FirebaseAuth mAuth;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Users");
-    EditText userName, password;
-    RadioGroup type;
-    RadioButton radioButton;
+    EditText email, password;
+    String email1, password1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        userName = (EditText) findViewById(R.id.user_name);
+        mAuth = FirebaseAuth.getInstance();
+        email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        type = (RadioGroup) findViewById(R.id.radiogroup);
     }
     public void close(){
         this.finish();
     }
     public void onSubmit(View view){
-        int selectedId;
-        selectedId= type.getCheckedRadioButtonId();
-        radioButton = (RadioButton) findViewById(selectedId);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Detail> details = new ArrayList<>();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String name = child.child("userName").getValue(String.class);
-                    String pass = child.child("password").getValue(String.class);
-                    String role = child.child("role").getValue(String.class);
-                    if(name.equals(userName.getText().toString()) &&
-                            role.equals(radioButton.getText().toString()) &&
-                            pass.equals(password.getText().toString())){
-                        for(DataSnapshot detail: child.child("details").getChildren()){
-                            Detail d = new Detail(detail.child("doctorName").getValue(String.class),
-                                    detail.child("visitDate").getValue(String.class),
-                                    detail.child("checkUpDate").getValue(String.class));
-                            details.add(d);
-                            System.out.println(d.doctorName);
-                        }
-                        System.out.println(details.size());
-                        User user = new User(child.child("userName").getValue(String.class),
-                                child.child("password").getValue(String.class),child.child("patientName").getValue(String.class),
-                                child.child("role").getValue(String.class),child.child("gender").getValue(String.class),
-                                child.child("age").getValue(String.class),child.child("weight").getValue(String.class),
-                                child.child("height").getValue(String.class),details);
-                        Intent intent = new Intent(view.getContext(), Home.class);
-                        intent.putExtra("User", user);
-                        startActivity(intent);
-                        close();
-                    }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                email1 = email.getText().toString();
+                Log.e("Email", email1);
+                password1 = password.getText().toString();
+                Log.e("Password", password1);
+                if(email1.matches("") || password1.matches(""))
+                {
+                    Log.e("Login", "Password or Email blank");
+                    Toast.makeText(Login.this, "Password and Email cannot be blank.",Toast.LENGTH_SHORT).show();
                 }
+                else signIn(email1, password1);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
     public void onSignUpClick(View view){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Create_Account.class);
         startActivity(intent);
         close();
+    }
+
+    private void signIn(String email, String password) {
+        // [START sign_in_with_email]
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithEmail:success");
+                        Toast.makeText(this, "Log in successful!", Toast.LENGTH_SHORT).show();
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                        Intent intent = new Intent(Login.this, Home.class);
+                        startActivity(intent);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        Toast.makeText(this, "Log in failed. Password or email incorrect.", Toast.LENGTH_SHORT).show();
+                        updateUI(null);
+                    }
+                });
+        // [END sign_in_with_email]
+    }
+    private void reload() { }
+
+    private void updateUI(FirebaseUser user) {
+
     }
 }

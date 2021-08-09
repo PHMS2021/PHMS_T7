@@ -1,5 +1,6 @@
 package com.example.phmst72021;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +31,9 @@ import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
     LinearLayout doctors;
     EditText userName, password,patientName, age, weight, height, doctorName, visitDate, annualCheckUpDate;
     Spinner gender;
-    private Calendar calendar;
     private int year, month, day;
     Button addBtn, removeBtn, submit;
     String gen;
@@ -54,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        userName = (EditText) findViewById(R.id.user_name);
+
+        userName = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         patientName = (EditText) findViewById(R.id.patient_name);
         type = (RadioGroup) findViewById(R.id.radiogroup);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         weight = (EditText) findViewById(R.id.weight);
         height = (EditText) findViewById(R.id.height);
         gender = (Spinner) findViewById(R.id.gender);
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             @Override
             public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
+                                        @NonNull ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 if(position == 0){
@@ -112,25 +112,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addBtn = findViewById(R.id.addDoctor);
         submit = findViewById(R.id.submit);
         addBtn.setOnClickListener(this);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int selectedId = type.getCheckedRadioButtonId();
-                radioButton = (RadioButton) findViewById(selectedId);
-                ArrayList<Detail> details = new ArrayList<>();
-                for(int i = 0; i<doctors.getChildCount(); i++){
-                    View view = doctors.getChildAt(i);
-                    doctorName = (EditText) view.findViewById(R.id.doctor_name);
-                    visitDate = (EditText) view.findViewById(R.id.visit_date);
-                    annualCheckUpDate = (EditText) view.findViewById(R.id.checkup_date);
-                    details.add(new Detail(doctorName.getText().toString(), visitDate.getText().toString(), annualCheckUpDate.getText().toString()));
-                }
-                ref.child(userName.getText().toString()).setValue(new User(userName.getText().toString(), password.getText().toString(),
-                        patientName.getText().toString(), radioButton.getText().toString(), gen, age.getText().toString(), weight.getText().toString(),
-                        height.getText().toString(), details));
-                startActivity(new Intent(v.getContext(), Login.class));
-                close();
+        submit.setOnClickListener(v -> {
+            int selectedId = type.getCheckedRadioButtonId();
+            radioButton = (RadioButton) findViewById(selectedId);
+            ArrayList<Detail> details = new ArrayList<>();
+            for(int i = 0; i<doctors.getChildCount(); i++){
+                View view = doctors.getChildAt(i);
+                doctorName = (EditText) view.findViewById(R.id.doctor_name);
+                visitDate = (EditText) view.findViewById(R.id.visit_date);
+                annualCheckUpDate = (EditText) view.findViewById(R.id.checkup_date);
+                details.add(new Detail(doctorName.getText().toString(), visitDate.getText().toString(), annualCheckUpDate.getText().toString()));
             }
+            ref.child(userName.getText().toString()).setValue(new User(userName.getText().toString(), password.getText().toString(),
+                    patientName.getText().toString(), radioButton.getText().toString(), gen, age.getText().toString(), weight.getText().toString(),
+                    height.getText().toString(), details));
+            startActivity(new Intent(v.getContext(), Login.class));
+            close();
         });
     }
     public void onLoginClick(View view){
@@ -149,61 +146,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addDoctorView() {
-        View doctorView = getLayoutInflater().inflate(R.layout.row_add_doctor, null, false);
+        @SuppressLint("InflateParams") View doctorView = getLayoutInflater().inflate(R.layout.row_add_doctor, null, false);
         doctors.addView(doctorView);
         removeBtn = (Button) doctorView.findViewById(R.id.remove_doctor);
         EditText visit = (EditText)  doctorView.findViewById(R.id.visit_date);
         EditText annual = (EditText)  doctorView.findViewById(R.id.checkup_date);
-        visit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        visit.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+            DatePickerDialog datePickerDialog;
+            datePickerDialog = new DatePickerDialog(v.getContext(), (arg0, arg1, arg2, arg3) -> {
                 // TODO Auto-generated method stub
-                DatePickerDialog datePickerDialog;
-                datePickerDialog = new DatePickerDialog(v.getContext(), new
-                        DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker arg0,
-                                                  int arg1, int arg2, int arg3) {
-                                // TODO Auto-generated method stub
-                                // arg1 = year
-                                // arg2 = month
-                                // arg3 = day
-                                visit.setText(new StringBuilder().append(arg3).append("/")
-                                        .append(arg2).append("/").append(arg1));
-                            }
-                        }, year, month, day);
-                datePickerDialog.setTitle("Select Visit Date");
-                datePickerDialog.show();
-            }
+                // arg1 = year
+                // arg2 = month
+                // arg3 = day
+                visit.setText(new StringBuilder().append(arg3).append("/")
+                        .append(arg2).append("/").append(arg1));
+            }, year, month, day);
+            datePickerDialog.setTitle("Select Visit Date");
+            datePickerDialog.show();
         });
-        annual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        annual.setOnClickListener(v -> {
+            // TODO Auto-generated method stub
+            DatePickerDialog datePickerDialog;
+            datePickerDialog = new DatePickerDialog(v.getContext(), (arg0, arg1, arg2, arg3) -> {
                 // TODO Auto-generated method stub
-                DatePickerDialog datePickerDialog;
-                datePickerDialog = new DatePickerDialog(v.getContext(), new
-                        DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker arg0,
-                                                  int arg1, int arg2, int arg3) {
-                                // TODO Auto-generated method stub
-                                // arg1 = year
-                                // arg2 = month
-                                // arg3 = day
-                                annual.setText(new StringBuilder().append(arg3).append("/")
-                                        .append(arg2).append("/").append(arg1));
-                            }
-                        }, year, month, day);
-                datePickerDialog.setTitle("Select Visit Date");
-                datePickerDialog.show();
-            }
+                // arg1 = year
+                // arg2 = month
+                // arg3 = day
+                annual.setText(new StringBuilder().append(arg3).append("/")
+                        .append(arg2).append("/").append(arg1));
+            }, year, month, day);
+            datePickerDialog.setTitle("Select Visit Date");
+            datePickerDialog.show();
         });
-        removeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doctors.removeView(doctorView);
-            }
-        });
+        removeBtn.setOnClickListener(v -> doctors.removeView(doctorView));
     }
 }
 

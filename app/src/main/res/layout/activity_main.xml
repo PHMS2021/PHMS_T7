@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,42 +31,44 @@
             android:layout_height="wrap_content">
             <RadioButton
                 android:layout_width="wrap_content"
-                android:text="Patient"
-                android:textSize="20dp"
-                android:layout_marginHorizontal="20dp"
+                android:text="@string/patient"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="20sp"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"/>
             <RadioButton
                 android:layout_width="wrap_content"
-                android:text="CareTaker"
+                android:text="@string/caretaker"
                 android:layout_marginHorizontal="20dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
+        android:layout_height="40sp"
+        android:paddingLeft="50sp"
+        android:paddingRight="50sp"
 
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="20sp"
         >
         <EditText
-            android:id="@+id/user_name"
+            android:id="@+id/email"
             android:background="@drawable/round_grey"
-            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:paddingLeft="10dp"
+            android:drawableStart="@drawable/ic_baseline_person_outline_24"
+            android:paddingStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:hint="User Name"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="5sp"
+            android:hint="@string/user_name"
             android:gravity="center"
-            android:textSize="20dp"
-            >
+            android:textSize="20sp"
+            android:autofillHints=""
+            android:inputType="text"
+            tools:ignore="RtlSymmetry">
 
         </EditText>
     </LinearLayout>
@@ -82,18 +83,18 @@
         <EditText
             android:id="@+id/password"
             android:background="@drawable/round_grey"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
-            android:paddingLeft="10dp"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:paddingStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:gravity="center"
-            android:textSize="20dp"
-            >
+            android:textSize="20sp"
+            tools:ignore="RtlSymmetry">
 
         </EditText>
     </LinearLayout>
@@ -109,8 +110,8 @@
        <EditText
            android:id="@+id/patient_name"
            android:background="@drawable/round_grey"
-           android:drawableLeft="@drawable/ic_person"
-           android:paddingLeft="10dp"
+           android:drawableStart="@drawable/ic_person"
+           android:paddingStart="10dp"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:textColor="@color/black"
@@ -119,7 +120,7 @@
            android:hint="Name of Patient"
            android:gravity="center"
            android:textSize="20dp"
-           >
+           tools:ignore="RtlSymmetry">
 
        </EditText>
     </LinearLayout>
