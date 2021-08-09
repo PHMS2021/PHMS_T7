@@ -138,29 +138,29 @@ public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSele
                 int value = 0;
 
                 String a_AmountGiven = AmountGiven.getText().toString();
-                /*if(!"".equals(a_AmountGiven)){
+                if(!"".equals(a_AmountGiven)){
                     value=Integer.parseInt(a_AmountGiven);
-                }*/
+                }
 
                 String a_DosageAmount = DosageAmount.getText().toString();
-                /*if(!"".equals(a_DosageAmount)){
+                if(!"".equals(a_DosageAmount)){
                     value=Integer.parseInt(a_DosageAmount);
-                }*/
+                }
 
                 Intent MyMeds = new Intent(AddMeds.this,MyMedications.class);
                 startActivity(MyMeds);
                 finish();
 
+                // Update Database using getter/setter + constructors
+                // in MedicationInfo java file
                 rootNode = FirebaseDatabase.getInstance();
                 String currentUser = fAuth.getInstance().getCurrentUser().getUid();
                 firebaseRef = rootNode.getReference("Users").child(currentUser).child("Medications").child(a_MedName);
 
                 MedicationInfo medInfo = new MedicationInfo(a_MedName,a_DocName,a_AmountGiven+" "+AmountMeasure,a_GivenDate,a_ExpDate,a_DosageAmount+" "+DosageMeasure,a_Notes);
                 firebaseRef.setValue(medInfo);
-                //get all the values
 
-
-                // Update Database
+                // Update Database using hashmap
                 /*HashMap hashMap = new HashMap();
                 hashMap.put("Med_Name", a_MedName);
                 hashMap.put("Doc_Name", a_DocName);

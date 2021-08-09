@@ -76,6 +76,7 @@ public class Login extends AppCompatActivity {
                         Log.e("Sign In User",String.valueOf(user));
                         Intent intent = new Intent(Login.this, Home.class);
                         startActivity(intent);
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.getException());

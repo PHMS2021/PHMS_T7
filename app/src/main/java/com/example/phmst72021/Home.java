@@ -66,12 +66,12 @@ public class Home extends AppCompatActivity {
     public void onUpdateClick(View view){
         Intent newIntent = new Intent(view.getContext(), UpdateProfile.class);
         startActivity(newIntent);
-        close();
+        //close();
     }
     public void onDietClick(View view){
         Intent newIntent = new Intent(view.getContext(), AddDiet.class);
         startActivity(newIntent);
-        close();
+       // close();
     }
     public void close(){
         this.finish();

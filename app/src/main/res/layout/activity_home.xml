@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_700"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:textAlignment="center"
     tools:context=".Home">
@@ -12,9 +12,12 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="Personal Health \nManagement System"
         android:textColor="#FAF8F8"
+        android:textSize="30sp"
         android:visibility="visible" />
 
     <Button
@@ -71,6 +74,7 @@
         android:backgroundTint="#FFFCFC"
         android:onClick="onLogOutClick"
         android:text="@string/log_out"
+        android:layout_marginTop="150dp"
         android:textColor="@color/purple_500"
         android:textSize="20sp" />
 

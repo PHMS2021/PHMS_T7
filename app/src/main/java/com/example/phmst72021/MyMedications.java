@@ -41,9 +41,12 @@ public class MyMedications extends AppCompatActivity {
         // TextViews
         a_MyMedsTitle = findViewById(R.id.MyMedsTitle);
 
-        // Recycler Views
+        // Recycler View
         recyclerView = findViewById(R.id.medsList);
+
+        // Get the UserID of current user
         String currentUser = fAuth.getInstance().getCurrentUser().getUid();
+
         firebaseRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser).child("Medications");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
