@@ -45,7 +45,6 @@ public class Login extends AppCompatActivity {
                 email1 = email.getText().toString();
                 Log.e("Email", email1);
                 password1 = password.getText().toString();
-                Log.e("Password", password1);
                 if(email1.matches("") || password1.matches(""))
                 {
                     Log.e("Login", "Password or Email blank");
@@ -67,7 +66,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void signIn(String email, String password) {
-        // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -75,21 +73,14 @@ public class Login extends AppCompatActivity {
                         Log.d(TAG, "signInWithEmail:success");
                         Toast.makeText(this, "Log in successful!", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
+                        Log.e("Sign In User",String.valueOf(user));
                         Intent intent = new Intent(Login.this, Home.class);
                         startActivity(intent);
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                         Toast.makeText(this, "Log in failed. Password or email incorrect.", Toast.LENGTH_SHORT).show();
-                        updateUI(null);
                     }
                 });
-        // [END sign_in_with_email]
-    }
-    private void reload() { }
-
-    private void updateUI(FirebaseUser user) {
-
     }
 }
