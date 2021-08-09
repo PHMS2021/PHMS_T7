@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +21,7 @@ public class Home extends AppCompatActivity {
     DatabaseReference ref = database.getReference("Users");
     Intent intent;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,7 @@ public class Home extends AppCompatActivity {
         Intent newIntent = new Intent(view.getContext(), Login.class);
         newIntent.putExtra("User", user);
         startActivity(newIntent);
+        AuthUI.getInstance().signOut(this);
         close();
     }
 }
