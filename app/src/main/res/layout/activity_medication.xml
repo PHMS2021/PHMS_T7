@@ -43,13 +43,14 @@
             android:layout_height="130dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:padding="30dp"
-            android:scaleType="fitCenter"
-
             android:background="@drawable/medspic"
             android:backgroundTint="#1e81b0"
+
             android:backgroundTintMode="multiply"
-            />
+            android:contextClickable="true"
+            android:outlineProvider="background"
+            android:padding="30dp"
+            android:scaleType="fitCenter" />
     </TableRow>
 
     <TextView
@@ -78,6 +79,7 @@
             android:layout_alignParentRight="true"
             android:padding="30dp"
             android:scaleType="fitCenter"
+
 
             android:background="#1e81b0"
             android:src="@android:drawable/ic_lock_idle_alarm" />

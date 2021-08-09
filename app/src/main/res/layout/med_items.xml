@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="1dp"
+    app:cardCornerRadius="4dp"
+    android:background="@color/black"
+    android:layout_margin="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#1e81b0">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/MedNameItem"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+
+                android:layout_gravity="center"
+                android:text="Medication"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/DosageMedItem"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="50 mg"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+
+                android:textColor="@color/black"
+                android:textSize="20sp">
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/MedEditImgBtnItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="8dp"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
+
+            <ImageButton
+                android:id="@+id/MedDeleteImgBtnItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:padding="8dp"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="280dp"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/ExpDateTitleItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Exp. Date:"
+                android:textColor="@color/black"
+                android:textSize="15sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/ExpDateActItem"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="08/23/2021"
+
+                android:textColor="@color/black"
+                android:textSize="15sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/AmountMedItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:text="1500 mg"
+                android:textColor="@color/black"
+                android:textSize="15sp">
+
+            </TextView>
+        </TableRow>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

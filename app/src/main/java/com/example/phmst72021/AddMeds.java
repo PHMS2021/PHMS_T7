@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.HashMap;
-
+import java.util.Objects;
 
 
 public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -34,6 +34,7 @@ public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSele
     DatePickerDialog picker;
 
     FirebaseAuth fAuth;
+    FirebaseDatabase rootNode;
     DatabaseReference firebaseRef;
 
     @Override
@@ -54,8 +55,8 @@ public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSele
         Dosage.setOnItemSelectedListener(this);
 
         fAuth = FirebaseAuth.getInstance();
-//Database
-        firebaseRef = FirebaseDatabase.getInstance().getReference("Medication");
+        //Database
+
 
 
         // All Textviews
@@ -121,61 +122,69 @@ public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSele
             @Override
             public void onClick(View v) {
 
-               // Spinners
+                // Spinners
                 String AmountMeasure = Amount.getSelectedItem().toString();
                 String DosageMeasure = Dosage.getSelectedItem().toString();
 
+                // EditTexts
                 String a_MedName = MedName.getText().toString().trim();
                 String a_DocName = DocName.getText().toString().trim();
                 String a_Notes = Notes.getText().toString().trim();
 
+                // DatePickers
                 String a_GivenDate = DateGiven.getText().toString();
                 String a_ExpDate = ExpiryDate.getText().toString();
 
                 int value = 0;
 
                 String a_AmountGiven = AmountGiven.getText().toString();
-                if(!"".equals(a_AmountGiven)){
+                /*if(!"".equals(a_AmountGiven)){
                     value=Integer.parseInt(a_AmountGiven);
-                }
+                }*/
 
                 String a_DosageAmount = DosageAmount.getText().toString();
-                if(!"".equals(a_DosageAmount)){
+                /*if(!"".equals(a_DosageAmount)){
                     value=Integer.parseInt(a_DosageAmount);
-                }
+                }*/
 
                 Intent MyMeds = new Intent(AddMeds.this,MyMedications.class);
                 startActivity(MyMeds);
                 finish();
 
-                // Update Database
-                HashMap hashMap = new HashMap();
-                hashMap.put("Medication Name", a_MedName);
-                hashMap.put("Doctor's Name", a_DocName);
-                hashMap.put("Amount Med Given", a_AmountGiven+" "+AmountMeasure);
-                hashMap.put("Date Med Given", a_GivenDate);
-                hashMap.put("Date Med Exp", a_ExpDate);
-                hashMap.put("Dosage Amount", a_DosageAmount+" "+DosageMeasure);
-                hashMap.put("General Notes", a_Notes);
+                rootNode = FirebaseDatabase.getInstance();
+                String currentUser = fAuth.getInstance().getCurrentUser().getUid();
+                firebaseRef = rootNode.getReference("Users").child(currentUser).child("Medications").child(a_MedName);
 
-                firebaseRef.child("User2").child(a_MedName).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                MedicationInfo medInfo = new MedicationInfo(a_MedName,a_DocName,a_AmountGiven+" "+AmountMeasure,a_GivenDate,a_ExpDate,a_DosageAmount+" "+DosageMeasure,a_Notes);
+                firebaseRef.setValue(medInfo);
+                //get all the values
+
+
+                // Update Database
+                /*HashMap hashMap = new HashMap();
+                hashMap.put("Med_Name", a_MedName);
+                hashMap.put("Doc_Name", a_DocName);
+                hashMap.put("Amount_Med_Given", a_AmountGiven+" "+AmountMeasure);
+                hashMap.put("Date_Med_Given", a_GivenDate);
+                hashMap.put("Date_Med_Exp", a_ExpDate);
+                hashMap.put("Dosage_Amount", a_DosageAmount+" "+DosageMeasure);
+                hashMap.put("General_Notes", a_Notes);
+
+                firebaseRef.child("Test").child("Medications").child(a_MedName).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public void onSuccess(Object o) {
                         Toast.makeText(AddMeds.this,"Database Updated", Toast.LENGTH_SHORT).show();
                     }
-                });
-
-
+                });*/
             }
         });
-
     }
 
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String selectedmeasure=parent.getItemAtPosition(position).toString();
-        Toast.makeText(this,selectedmeasure,Toast.LENGTH_SHORT).show();
+        //String selectedmeasure=parent.getItemAtPosition(position).toString();
+        //Toast.makeText(this,selectedmeasure,Toast.LENGTH_SHORT).show();
 
     }
 

@@ -1,73 +1,81 @@
 package com.example.phmst72021;
 
 public class MedicationInfo {
-    private String medicationName;
-    private String doctorsName;
-    private String dateMedGiven;
-    private String dateMedExp;
-    private String medAmount;
-    private String dosageAmount;
-    private String generalNotes;
 
-    public MedicationInfo(){
+    String MedName;
+    String DocName;
+    String AmountGiven;
+    String GivenDate;
+    String ExpDate;
+    String DosageAmount;
+    String Notes;
 
-    }
-
-    // getter and setter for med name
-    public String getMedicationName(){
-        return medicationName;
+    public MedicationInfo() {
     }
 
-
-    public void setMedicationName(){
-        this.medicationName = medicationName;
+    public MedicationInfo(String medName, String docName, String amountGiven, String givenDate, String expDate, String dosageAmount, String notes) {
+        MedName = medName;
+        DocName = docName;
+        AmountGiven = amountGiven;
+        GivenDate = givenDate;
+        ExpDate = expDate;
+        DosageAmount = dosageAmount;
+        Notes = notes;
     }
 
-    // getter and setter for doc name
-    public String getDoctorsName(){
-        return doctorsName;
-    }
-    public void setDoctorsName(){
-        this.doctorsName = doctorsName;
+    public String getMedName() {
+        return MedName;
     }
 
-    //getter and setter for date med given
-    public String getDateMedGiven(){
-        return dateMedGiven;
-    }
-    public void setDateMedGiven(){
-        this.dateMedGiven = dateMedGiven;
+    public String getDocName() {
+        return DocName;
     }
 
-    //getter and setter for date med exp
-    public String getDateMedExp(){
-        return dateMedExp;
-    }
-    public void setDateMedExp(){
-        this.dateMedExp = dateMedExp;
+    public String getAmountGiven() {
+        return AmountGiven;
     }
 
-    // getter and setter for med amount
-    public String getMedAmount(){
-        return getMedAmount();
-    }
-    public void setMedAmount(){
-        this.medAmount = medAmount;
+    public String getGivenDate() {
+        return GivenDate;
     }
 
-    //getter and setter for dosage amount
-    public String getDosageAmount(){
-        return dosageAmount;
-    }
-    public void setDosageAmount(){
-        this.dosageAmount = dosageAmount;
+    public String getExpDate() {
+        return ExpDate;
     }
 
-    //getter and setter for general notes
-    public String getGeneralNotes(){
-        return generalNotes;
+    public String getDosageAmount() {
+        return DosageAmount;
     }
-    public void setGeneralNotes(){
-        this.generalNotes = generalNotes;
+
+    public String getNotes() {
+        return Notes;
+    }
+
+    public void setMedName(String medName) {
+        MedName = medName;
+    }
+
+    public void setDocName(String docName) {
+        DocName = docName;
+    }
+
+    public void setAmountGiven(String amountGiven) {
+        AmountGiven = amountGiven;
+    }
+
+    public void setGivenDate(String givenDate) {
+        GivenDate = givenDate;
+    }
+
+    public void setExpDate(String expDate) {
+        ExpDate = expDate;
+    }
+
+    public void setDosageAmount(String dosageAmount) {
+        DosageAmount = dosageAmount;
+    }
+
+    public void setNotes(String notes) {
+        Notes = notes;
     }
 }

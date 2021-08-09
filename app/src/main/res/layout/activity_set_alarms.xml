@@ -24,55 +24,43 @@
             android:gravity="center"
 
             android:text="Add Alarms"
-
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintVertical_chainStyle="packed"
-
             />
-
     </TableRow>
-
 
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
         >
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/timeSet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="30dp"
-
             android:gravity="center"
 
             android:text="8:00 AM"
-
             android:textColor="#063970"
             android:textSize="70sp"
-
-            app:layout_constraintVertical_chainStyle="packed"
-
             />
-
     </TableRow>
 
-        <Button
-            android:id="@+id/selectTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+    <Button
+        android:id="@+id/selectTimeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
 
-            android:text="Select Time"
-            android:textSize="15sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="30dp"
-            />
+        android:text="Select Time"
+        android:textSize="15sp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="30dp"
+        />
 
 
 
@@ -80,97 +68,97 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-
         >
+
         <TextView
-            android:id="@+id/days"
+            android:id="@+id/RepeatDaysAlarm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="10dp"
 
-
-
             android:text="Repeat:"
-
             android:textColor="#063970"
             android:textSize="20sp"
             android:textStyle="bold"
-
-            app:layout_constraintVertical_chainStyle="packed"
-
             />
-
     </TableRow>
-<TableRow
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
 
-    >
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mon."
-        android:textColor="#063970"
-        android:textSize="20sp"
+        android:gravity="center"
+        >
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        />
+            android:text="Mon."
+            android:textColor="#063970"
+            android:textSize="20sp" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#063970"
-        android:textSize="20sp"
-        android:text="Tues." />
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#063970"
-        android:textSize="20sp"
-        android:text="Wed." />
+            android:textColor="#063970"
+            android:textSize="20sp"
+            android:text="Tues." />
 
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#063970"
-        android:textSize="20sp"
-        android:text="Thurs." />
-</TableRow>
-<TableRow
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    >
-    <CheckBox
-        android:id="@+id/checkBox5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#063970"
-        android:textSize="20sp"
-        android:text="Fri." />
+        <CheckBox
+            android:id="@+id/checkBox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <CheckBox
-        android:id="@+id/checkBox6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#063970"
-        android:textSize="20sp"
-        android:text="Sat." />
+            android:textColor="#063970"
+            android:textSize="20sp"
+            android:text="Wed." />
 
-    <CheckBox
-        android:id="@+id/checkBox7"
-        android:layout_width="wrap_content"
+        <CheckBox
+            android:id="@+id/checkBox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#063970"
+            android:textSize="20sp"
+            android:text="Thurs." />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#063970"
-        android:textSize="20sp"
-        android:text="Sun." />
-</TableRow>
+        android:gravity="center"
+        >
+        <CheckBox
+            android:id="@+id/checkBox5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#063970"
+            android:textSize="20sp"
+            android:text="Fri." />
+
+        <CheckBox
+            android:id="@+id/checkBox6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#063970"
+            android:textSize="20sp"
+            android:text="Sat." />
+
+        <CheckBox
+            android:id="@+id/checkBox7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="#063970"
+            android:textSize="20sp"
+            android:text="Sun." />
+    </TableRow>
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -178,44 +166,35 @@
         android:layout_marginTop="15dp"
         >
         <TextView
-            android:id="@+id/MedsTitle"
+            android:id="@+id/MedsTitleSpinner"
             android:layout_width="wrap_content"
-            android:layout_height="55dp"
-
-
+            android:layout_gravity="center"
 
             android:text="Medication:"
-            android:textAlignment="textStart"
-            android:padding="10dp"
             android:textColor="#063970"
-
             android:textSize="20sp"
-            android:textStyle="bold"
-
-            app:layout_constraintVertical_chainStyle="packed">
-
+            android:textStyle="bold">
         </TextView>
-        <EditText
-        android:id="@+id/ExpiryDatePick"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
 
-        android:hint="Enter the Medication that the alarm is set for...">
-
-        </EditText>
-
+        <Spinner
+            android:id="@+id/MedNameSpinner"
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            />
     </TableRow>
 
     <Button
-        android:id="@+id/addalarm"
+        android:id="@+id/setAlarmBtn"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:textSize="17sp"
 
+        android:textSize="17sp"
         android:text="Set Alarm"
 
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="30dp"
         />
 
