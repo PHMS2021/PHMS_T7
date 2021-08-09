@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,16 +31,17 @@ import java.util.Calendar;
 import java.util.List;
 
 public class UpdateProfile extends AppCompatActivity {
-
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private FirebaseAuth mAuth;
     DatabaseReference ref = database.getReference("Users");
     Intent intent;
     Context context;
     LinearLayout doctors;
     private Calendar calendar;
-    User user;
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    User user1;
     String gen;
-    EditText userName, password,patientName, age, weight, height, doctorName, visitDate, annualCheckUpDate;
+    EditText userName, password, patientName, age, weight, height, doctorName, visitDate, annualCheckUpDate;
     Spinner gender;
     RadioGroup type;
     RadioButton radioButton;
@@ -59,7 +62,7 @@ public class UpdateProfile extends AppCompatActivity {
         setContentView(R.layout.activity_update_profile);
         context = this;
         intent = getIntent();
-        user = intent.getParcelableExtra("User");
+        user1 = intent.getParcelableExtra("User");
         userName = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         patientName = (EditText) findViewById(R.id.patient_name);
@@ -76,29 +79,26 @@ public class UpdateProfile extends AppCompatActivity {
         addBtn = findViewById(R.id.addDoctor);
         submit = findViewById(R.id.submit);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,R.layout.spinner_text,genderList){
+                this, R.layout.spinner_text, genderList) {
             @Override
-            public boolean isEnabled(int position){
-                if(position == 0)
-                {
+            public boolean isEnabled(int position) {
+                if (position == 0) {
                     // Disable the first item from Spinner
                     // First item will be use for hint
                     return false;
-                }
-                else
-                {
+                } else {
                     return true;
                 }
             }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if(position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
-                }
-                else {
+                } else {
                     tv.setTextColor(Color.BLACK);
                 }
                 return view;
@@ -110,7 +110,7 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
-                if(position > 0){
+                if (position > 0) {
                     gen = selectedItemText;
                 }
             }
@@ -120,15 +120,14 @@ public class UpdateProfile extends AppCompatActivity {
 
             }
         });
-        userName.setText(user.userName);
-        password.setText(user.password);
-        patientName.setText(user.patientName);
+        userName.setText(user.getEmail());
+        /*patientName.setText(user.patientName);
         type.check(user.role.equals("Patient") ? R.id.patient : R.id.careTaker);
         age.setText(user.age);
         weight.setText(user.weight);
         height.setText(user.height);
         gender.setSelection(adapter.getPosition(user.gender));
-        for (Detail detail : user.details) {
+        for (Detail detail : user1.details) {
             View doctorView = getLayoutInflater().inflate(R.layout.row_add_doctor, null, false);
             doctors.addView(doctorView);
             removeBtn = (Button) doctorView.findViewById(R.id.remove_doctor);
@@ -190,6 +189,8 @@ public class UpdateProfile extends AppCompatActivity {
             });
         }
     }
+
+
 
     public void onUpdateClick() {
         onUpdateClick();
@@ -274,8 +275,14 @@ public class UpdateProfile extends AppCompatActivity {
         });
     }
 
+
+
     public void close(){
         this.finish();
     }
 
+}
+
+         */
+    }
 }
