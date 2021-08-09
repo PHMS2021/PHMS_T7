@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSele
     TextView a_AddMedsTitle, a_MedNameTitle, a_DocNameTitle, a_AmountGivenTitle, a_DosageAmountTitle, a_NotesTitle, a_DateGivenTitle, a_ExpiryDateTitle;
     EditText MedName, DocName, AmountGiven, DosageAmount, Notes, DateGiven, ExpiryDate;
     Button SetAddMedBtn;
+    ImageButton BackBtn;
     DatePickerDialog picker;
 
     FirebaseAuth fAuth;
@@ -117,6 +119,16 @@ public class AddMeds extends AppCompatActivity implements AdapterView.OnItemSele
         });
 
         // Buttons
+        BackBtn = findViewById(R.id.BackImgBtn);
+        BackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent MyMeds = new Intent(AddMeds.this,MyMedications.class);
+                startActivity(MyMeds);
+                finish();
+            }
+        });
+
         SetAddMedBtn = findViewById(R.id.AddMedBtn);
         SetAddMedBtn.setOnClickListener(new View.OnClickListener() {
             @Override

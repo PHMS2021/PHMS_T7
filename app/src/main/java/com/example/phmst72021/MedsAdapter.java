@@ -16,17 +16,19 @@ public class MedsAdapter extends RecyclerView.Adapter<MedsAdapter.MyViewHolder> 
     Context context;
 
     ArrayList<MedicationInfo> list;
+    private OnMedListener mOnMedListener;
 
-    public MedsAdapter(Context context, ArrayList<MedicationInfo> list) {
+    public MedsAdapter(Context context, ArrayList<MedicationInfo> list,OnMedListener onMedListener ) {
         this.context = context;
         this.list = list;
+        this.mOnMedListener = onMedListener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.med_items,parent,false);
-        return new MyViewHolder(v);
+        return new MyViewHolder(v,mOnMedListener);
     }
 
     @Override
@@ -45,10 +47,12 @@ public class MedsAdapter extends RecyclerView.Adapter<MedsAdapter.MyViewHolder> 
         return list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView medNameItem, dosageItem, amountItem, expTitleItem, expDateItem;
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public MyViewHolder(@NonNull View itemView)
+        TextView medNameItem, dosageItem, amountItem, expTitleItem, expDateItem;
+        OnMedListener onMedListener;
+
+        public MyViewHolder(@NonNull View itemView, OnMedListener onMedListener)
         {
             super(itemView);
 
@@ -57,6 +61,18 @@ public class MedsAdapter extends RecyclerView.Adapter<MedsAdapter.MyViewHolder> 
             amountItem = itemView.findViewById(R.id.AmountMedItem);
             expTitleItem = itemView.findViewById(R.id.ExpDateTitleItem);
             expDateItem = itemView.findViewById(R.id.ExpDateActItem);
+
+            this.onMedListener = onMedListener;
+
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onMedListener.onMedClick(getAdapterPosition());
+        }
+    }
+    public interface OnMedListener{
+        void onMedClick(int position);
     }
 }

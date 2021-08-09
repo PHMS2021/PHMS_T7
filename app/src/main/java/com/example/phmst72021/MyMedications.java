@@ -22,10 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MyMedications extends AppCompatActivity {
+public class MyMedications extends AppCompatActivity implements MedsAdapter.OnMedListener {
 
     TextView a_MyMedsTitle;
     ImageButton a_AddBtn;
+    ImageButton BackImgBtnArrow;
 
     RecyclerView recyclerView;
     FirebaseAuth fAuth;
@@ -52,7 +53,7 @@ public class MyMedications extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        medsAdapter = new MedsAdapter(this,list);
+        medsAdapter = new MedsAdapter(this,list, this);
         recyclerView.setAdapter(medsAdapter);
 
         firebaseRef.addValueEventListener(new ValueEventListener() {
@@ -84,5 +85,30 @@ public class MyMedications extends AppCompatActivity {
                 //finish();
             }
         });
+
+        BackImgBtnArrow = findViewById(R.id.BackImgBtn);
+        BackImgBtnArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Med = new Intent(MyMedications.this,Medication.class);
+                startActivity(Med);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onMedClick(int position) {
+        list.get(position);
+        Intent intent = new Intent(this,ViewMed.class);
+        intent.putExtra("MedName",list.get(position).getMedName());
+        intent.putExtra("DocName",list.get(position).getDocName());
+        intent.putExtra("GivenDate",list.get(position).getGivenDate());
+        intent.putExtra("ExpDate",list.get(position).getExpDate());
+        intent.putExtra("AmountGiven",list.get(position).getAmountGiven());
+        intent.putExtra("DosageAmount",list.get(position).getDosageAmount());
+        intent.putExtra("Notes",list.get(position).getNotes());
+        startActivity(intent);
+
     }
 }

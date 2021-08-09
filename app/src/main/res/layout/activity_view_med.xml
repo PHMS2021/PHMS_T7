@@ -1,15 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1e81b0"
     tools:context=".ViewMed">
 
-    <LinearLayout
-        android:layout_width="391dp"
-        android:layout_height="827dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"></LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="#063970"
+        >
+        <ImageButton
+            android:id="@+id/BackImgBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+
+
+            android:scaleType="fitCenter"
+            android:background="#063970"
+            android:src="@android:drawable/ic_menu_revert" />
+
+        <TextView
+            android:id="@+id/MedicationTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:background="#063970"
+            android:layout_marginLeft="95dp"
+            android:gravity="center_vertical"
+
+            android:text="Medication Name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+        <ImageView
+            android:src="@android:drawable/ic_menu_view"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/round_blue">
+
+        </ImageView>
+    </TableRow>
+    <TableRow
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+       >
+        <TextView
+            android:id="@+id/DocNameViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+
+            android:text="Doctor's Name:"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/DocNameView"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:background="@drawable/round_grey"
+
+            android:text="Doctor's Name Here"
+
+            android:textColor="#063970"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+
+        >
+        <TextView
+            android:id="@+id/DateGivenViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+
+            android:text="Date Given:"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/DateGivenView"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:background="@drawable/round_grey"
+
+            android:text="Given Date"
+            android:textColor="#063970"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+
+        >
+        <TextView
+            android:id="@+id/ExpiresDateTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:gravity="center"
+
+            android:text="Expires:"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/ExpiresDateView"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="82dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:background="@drawable/round_grey"
+
+            android:text="Expire Date"
+            android:textColor="#063970"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+
+        >
+        <TextView
+            android:id="@+id/AmountGivenTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Amount Given:"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/AmountGivenView"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:background="@drawable/round_grey"
+
+            android:text="Amount Med Given"
+            android:textColor="#063970"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+
+        >
+        <TextView
+            android:id="@+id/DosageTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+
+            android:text="Dosage:"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/DosageView"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:background="@drawable/round_grey"
+
+            android:text="Dosage Amount"
+            android:textColor="#063970"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+    <TableRow
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/NotesTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="General Notes:"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            />
+
+    </TableRow>
+    <TextView
+        android:id="@+id/NotesView"
+        android:background="@drawable/round_grey"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+
+        android:text="Notes Written Here..."
+        android:textColor="#063970"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+
+</LinearLayout>
+

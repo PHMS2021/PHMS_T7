@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class Medication extends AppCompatActivity {
 
     TextView a_MedsTitle, a_AddEditMedTitle, a_AddEditAlarmsTitle;
-    ImageButton a_MedsImgBtn, a_AlarmsImgBtn;
+    ImageButton a_MedsImgBtn, a_AlarmsImgBtn, a_BackImgBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class Medication extends AppCompatActivity {
 
         a_MedsImgBtn = findViewById(R.id.MedsImgBtn);
         a_AlarmsImgBtn = findViewById(R.id.AlarmsImgBtn);
+        a_BackImgBtn = findViewById(R.id.BackImgBtn);
 
         a_MedsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +41,15 @@ public class Medication extends AppCompatActivity {
                 Intent MyAlarms = new Intent(Medication.this,MyAlarms.class);
                 startActivity(MyAlarms);
                 //finish();
+            }
+        });
+
+        a_BackImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Home = new Intent(Medication.this,Home.class);
+                startActivity(Home);
+                finish();
             }
         });
     }
