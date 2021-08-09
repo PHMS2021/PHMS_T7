@@ -38,10 +38,8 @@ public class Create_Account extends AppCompatActivity {
         password = (EditText) findViewById(R.id.editTextPassword);
 
         mAuth = FirebaseAuth.getInstance();
-        // [END initialize_auth]
     }
 
-    // [START on_start_check_user]
     @Override
     public void onStart() {
         super.onStart();
@@ -50,36 +48,26 @@ public class Create_Account extends AppCompatActivity {
             reload();
         }
     }
-    // [END on_start_check_user]
 
     public void createAccount(String email, String password) {
-        // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success - " + email + " " + password);
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                            Intent intent = new Intent(Create_Account.this, Login.class);
-                            startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure - " + email + " " + password, task.getException());
-                            Toast.makeText(Create_Account.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "createUserWithEmail:success - " + email + " " + password);
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                        Intent intent = new Intent(Create_Account.this, Login.class);
+                        startActivity(intent);
+                    } else {
+                        Log.w(TAG, "createUserWithEmail:failure - " + email + " " + password, task.getException());
+                        Toast.makeText(Create_Account.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                        updateUI(null);
                     }
                 });
-        // [END create_user_with_email]
     }
 
     private void sendEmailVerification() {
-        // Send verification email
-        // [START send_email_verification]
         final FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
         user.sendEmailVerification()
@@ -129,7 +117,6 @@ public class Create_Account extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }

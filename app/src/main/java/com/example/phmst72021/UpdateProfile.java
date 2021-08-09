@@ -60,7 +60,7 @@ public class UpdateProfile extends AppCompatActivity {
         context = this;
         intent = getIntent();
         user = intent.getParcelableExtra("User");
-        userName = (EditText) findViewById(R.id.user_name);
+        userName = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         patientName = (EditText) findViewById(R.id.patient_name);
         type = (RadioGroup) findViewById(R.id.radiogroup);

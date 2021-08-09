@@ -2,7 +2,6 @@ package com.example.phmst72021;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddDiet extends AppCompatActivity {
 
-    EditText calory, water, dailyFood, recipes, description, articles, notes;
+    EditText calorie, water, Food, recipes, description, articles, notes;
     Button submit;
     User user;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -24,28 +23,25 @@ public class AddDiet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_diet);
         user = getIntent().getParcelableExtra("User");
-        calory = (EditText) findViewById(R.id.calory);
+        calorie = (EditText) findViewById(R.id.calorie);
         water = (EditText) findViewById(R.id.water);
-        dailyFood = (EditText) findViewById(R.id.daily_food);
+        Food = (EditText) findViewById(R.id.daily_food);
         recipes = (EditText) findViewById(R.id.recipes);
         description = (EditText) findViewById(R.id.description);
         articles = (EditText) findViewById(R.id.articles);
         notes = (EditText) findViewById(R.id.general_notes);
         submit = (Button) findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Diet diet = new Diet(user.userName, calory.getText().toString(), water.getText().toString(),
-                        dailyFood.getText().toString(), recipes.getText().toString(),
-                        description.getText().toString(), articles.getText().toString(),
-                        notes.getText().toString());
-                ref.child(diet.userName).setValue(diet);
-                Toast.makeText(v.getContext(), "Diet Saved Successfully", Toast.LENGTH_SHORT).show();
-                Intent newIntent = new Intent(v.getContext(), Home.class);
-                newIntent.putExtra("User", user);
-                startActivity(newIntent);
-                close();
-            }
+        submit.setOnClickListener(v -> {
+            Diet diet = new Diet(user.userName, calorie.getText().toString(), water.getText().toString(),
+                    Food.getText().toString(), recipes.getText().toString(),
+                    description.getText().toString(), articles.getText().toString(),
+                    notes.getText().toString());
+            ref.child(diet.userName).setValue(diet);
+            Toast.makeText(v.getContext(), "Diet Saved Successfully", Toast.LENGTH_SHORT).show();
+            Intent newIntent = new Intent(v.getContext(), Home.class);
+            newIntent.putExtra("User", user);
+            startActivity(newIntent);
+            close();
         });
     }
     public void close(){
@@ -56,7 +52,7 @@ public class AddDiet extends AppCompatActivity {
 
 class Diet{
     String userName;
-    String calory;
+    String calorie;
     String water;
     String dailyFood;
     String recipes;
@@ -66,7 +62,7 @@ class Diet{
 
     public Diet(String userName, String calorie, String water, String dailyFood, String recipes, String description, String articles, String notes) {
         this.userName = userName;
-        this.calory = calorie;
+        this.calorie = calorie;
         this.water = water;
         this.dailyFood = dailyFood;
         this.recipes = recipes;
@@ -83,12 +79,12 @@ class Diet{
         this.userName = userName;
     }
 
-    public String getCalory() {
-        return calory;
+    public String getCalorie() {
+        return calorie;
     }
 
-    public void setCalory(String calory) {
-        this.calory = calory;
+    public void setCalorie(String calorie) {
+        this.calorie = calorie;
     }
 
     public String getWater() {

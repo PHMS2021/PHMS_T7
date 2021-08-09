@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,9 +23,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Diet"
+                android:text="@string/add_diet"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
@@ -38,20 +37,21 @@
             android:layout_marginBottom="20dp"
             >
             <EditText
-                android:id="@+id/calory"
+                android:id="@+id/calorie"
                 android:background="@drawable/round_grey"
-                android:drawableLeft="@drawable/ic_baseline_emoji_food_beverage_24"
-                android:paddingLeft="10dp"
+                android:drawableStart="@drawable/ic_baseline_emoji_food_beverage_24"
+                android:paddingStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="Daily Caloric InTake"
+                android:hint="@string/daily_caloric_intake"
                 android:inputType="number"
                 android:gravity="center"
-                android:textSize="20dp"
-                >
+                android:textSize="20sp"
+                android:autofillHints=""
+                tools:ignore="RtlSymmetry">
 
             </EditText>
         </LinearLayout>
@@ -66,8 +66,8 @@
             <EditText
                 android:id="@+id/water"
                 android:background="@drawable/round_grey"
-                android:drawableLeft="@drawable/ic_baseline_local_drink_24"
-                android:paddingLeft="10dp"
+                android:drawableStart="@drawable/ic_baseline_local_drink_24"
+                android:paddingStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
@@ -77,7 +77,7 @@
                 android:inputType="number"
                 android:gravity="center"
                 android:textSize="20dp"
-                >
+                android:autofillHints="">
             </EditText>
         </LinearLayout>
         <LinearLayout
@@ -92,16 +92,17 @@
                 android:id="@+id/daily_food"
                 android:background="@drawable/round_grey"
                 android:drawableTop="@drawable/ic_baseline_food_bank_24"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="Daily Food InTake"
+                android:hint="@string/daily_food_intake"
                 android:gravity="top"
                 android:textSize="20dp"
-                >
+                android:autofillHints=""
+                android:inputType="number">
 
             </EditText>
         </LinearLayout>
@@ -118,16 +119,17 @@
                 android:id="@+id/recipes"
                 android:background="@drawable/round_grey"
                 android:drawableTop="@drawable/ic_baseline_emoji_food_beverage_24"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="Recipes"
+                android:hint="@string/recipes"
                 android:gravity="top"
                 android:textSize="20dp"
-                >
+                android:autofillHints=""
+                android:inputType="text">
 
             </EditText>
         </LinearLayout>

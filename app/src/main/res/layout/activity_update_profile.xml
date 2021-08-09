@@ -58,7 +58,7 @@
             android:layout_marginBottom="20dp"
             >
             <EditText
-                android:id="@+id/user_name"
+                android:id="@+id/email"
                 android:background="@drawable/round_grey"
                 android:drawableLeft="@drawable/ic_baseline_person_outline_24"
                 android:paddingLeft="10dp"

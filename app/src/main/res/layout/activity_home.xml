@@ -1,48 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/purple_500"
-    android:gravity="center"
     android:layout_height="match_parent"
+    android:background="@color/purple_700"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:textAlignment="center"
     tools:context=".Home">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:text="Personal Health \nManagement System"
+        android:textColor="#FAF8F8"
+        android:visibility="visible" />
+
     <Button
         android:id="@+id/update"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_500"
-        android:layout_marginVertical="10dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10sp"
         android:backgroundTint="@color/white"
-        android:text="Update Profile"
         android:onClick="onUpdateClick"
-        android:textSize="20dp"
-        />
+        android:text="@string/update_profile"
+        android:textColor="@color/purple_500"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_500"
-        android:layout_marginVertical="10dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="10sp"
         android:backgroundTint="@color/white"
-        android:text="Delete Account"
         android:onClick="onDeleteClick"
-        android:textSize="20dp"
-        />
+        android:text="@string/delete_account"
+        android:textColor="@color/purple_500"
+        android:textSize="20sp" />
+
     <Button
         android:id="@+id/diet"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_500"
+        android:layout_gravity="center"
         android:layout_marginVertical="10dp"
         android:backgroundTint="@color/white"
         android:onClick="onDietClick"
-        android:text="Add Diet"
-        android:textSize="20dp"
-        />
+        android:text="@string/add_diet_btn"
+        android:textColor="@color/purple_500"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/LogOut"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFCFC"
+        android:onClick="onLogOutClick"
+        android:text="@string/log_out"
+        android:textColor="@color/purple_500"
+        android:textSize="20sp" />
 
 </LinearLayout>
