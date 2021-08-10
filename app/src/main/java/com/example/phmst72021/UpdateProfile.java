@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,22 +14,27 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Objects;
 
 
 public class UpdateProfile extends AppCompatActivity {
     FirebaseDatabase ProfileNode;
-
+    private FirebaseAuth mAuth;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("Users");
     EditText email;
     EditText userName;
-    Spinner gender;
+    EditText gender;
     EditText patientNameFirst;
     EditText patientNameMiddle;
     EditText patientNameLast;
@@ -38,20 +44,9 @@ public class UpdateProfile extends AppCompatActivity {
     EditText doctorName;
     EditText visitDate;
     EditText annualCheckUpDate;
+    EditText doctorNote;
     RadioGroup userType;
     RadioButton radioButton;
-    String gen;
-    String[] genders = new String[]{
-            "Gender",
-            "Male",
-            "Female",
-            "Other"
-    };
-
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    String UserName = "", Gender = "", PatientNameFirst = "",PatientNameMiddle = "",
-            PatientNameLast = "", Age = "", Weight = "", Height = "", DoctorName = "",
-            VisitDate = "", AnnualCheckUpDate = "", UserType = "", DoctorNote = "";
 
     Button addBtn, removeBtn, submit;
     int year, day, month;
@@ -83,6 +78,7 @@ public class UpdateProfile extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+        doctorNote = findViewById(R.id.doctor_note);
         annualCheckUpDate = findViewById(R.id.annualCheckUpDate);
         annualCheckUpDate.setInputType(InputType.TYPE_NULL);
         annualCheckUpDate.setOnClickListener(v -> {
@@ -98,8 +94,11 @@ public class UpdateProfile extends AppCompatActivity {
         ProfileNode = FirebaseDatabase.getInstance();
         String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
-}
- /*       userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+    public void updateProfile(){
+        database = FirebaseDatabase.getInstance();
+        String currentUser = mAuth.getInstance().getCurrentUser().getUid();
+        userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup userType, int checkedId) {
                 RadioButton checkedRadioButton = (RadioButton) findViewById(checkedId);
@@ -108,11 +107,36 @@ public class UpdateProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), userTypeText, Toast.LENGTH_SHORT).show();
             }
         });
+        Log.d("Create Profile for: ", currentUser);
+        HashMap hashMap = new HashMap();
+        hashMap.put("userName", userName);
+        hashMap.put("gender", gender);
+        hashMap.put("patientNameFirst", patientNameFirst);
+        hashMap.put("patientNameMiddle", patientNameMiddle);
+        hashMap.put("patientNameLast", patientNameLast);
+        hashMap.put("age", age);
+        hashMap.put("weight", weight);
+        hashMap.put("height", height);
+        hashMap.put("doctorName", doctorName);
+        hashMap.put("visitDate", visitDate);
+        hashMap.put("annualCheckUpDate", annualCheckUpDate);
+        hashMap.put("userType", userType);
+        hashMap.put("doctorNote", doctorNote);
+        ref = database.getReference("Users").child(currentUser).child("Profile");
+        Log.d("Update Profile at", String.valueOf(ref));
+        Log.d("Update Profile with", String.valueOf(hashMap));
+        ref.updateChildren(hashMap).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                Log.d("Create Profile successful for: ", currentUser);
+            } else {
+                Log.e("Create Profile failed for: ", currentUser + " because: " + task.getException());
+                Toast.makeText(UpdateProfile.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
 }
-
-  */
 
 
 

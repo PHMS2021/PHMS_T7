@@ -78,8 +78,8 @@
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="@string/password"
-                android:inputType="textPassword"
+                android:hint="@string/first_name"
+                android:inputType="text"
                 android:gravity="center"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry">
@@ -101,7 +101,7 @@
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="Name of Patient"
+                android:hint="@string/middle_name"
                 android:gravity="center"
                 android:textSize="20dp"
                 tools:ignore="RtlSymmetry">
@@ -123,8 +123,8 @@
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="@string/password"
-                android:inputType="textPassword"
+                android:hint="@string/last_name"
+                android:inputType="text"
                 android:gravity="center"
                 android:textSize="20sp"
                 tools:ignore="RtlSymmetry">
@@ -136,18 +136,20 @@
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:layout_marginBottom="20dp">
-            <Spinner
+            <EditText
                 android:id="@+id/gender"
                 android:background="@drawable/round_grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableLeft="@drawable/ic_gender"
+                android:drawableLeft="@drawable/ic_age"
                 android:paddingLeft="10dp"
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
+                android:inputType="text"
                 android:layout_marginTop="5dp"
-                android:spinnerMode="dropdown"
-                android:gravity="center"/>
+                android:hint="gender"
+                android:gravity="center"
+                android:textSize="20dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -207,8 +209,8 @@
                 android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:inputType="number"
-                android:hint="Weight"
+                android:inputType="date"
+                android:hint="Annual Checkup Date"
                 android:gravity="center"
                 android:textSize="20dp"/>
         </LinearLayout>
@@ -230,6 +232,27 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:hint="Height"
+                android:gravity="center"
+                android:textSize="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_marginBottom="20dp">
+            <EditText
+                android:id="@+id/doctor_note"
+                android:background="@drawable/round_grey"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_height"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:inputType="text"
+                android:hint="Doctor's Notes!"
                 android:gravity="center"
                 android:textSize="20dp"/>
         </LinearLayout>
