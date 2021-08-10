@@ -10,19 +10,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#1e81b0">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/MedImgBtnItem"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/medspic"
+                android:layout_gravity="center_vertical"
+
+                android:backgroundTint="#1e81b0"
+                android:backgroundTintMode="multiply"
+                android:contextClickable="true"
+                android:outlineProvider="background"
+                android:padding="4dp" />
 
             <TextView
                 android:id="@+id/MedNameItem"
-                android:layout_width="210dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="8dp"
 
                 android:layout_gravity="center"
                 android:text="Medication"
@@ -30,6 +43,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp">
             </TextView>
+
 
             <TextView
                 android:id="@+id/DosageMedItem"
@@ -47,22 +61,22 @@
                 android:id="@+id/MedEditImgBtnItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:padding="8dp"
+                android:layout_marginLeft="6dp"
+                android:padding="9dp"
                 app:srcCompat="@android:drawable/ic_menu_edit" />
 
             <ImageButton
                 android:id="@+id/MedDeleteImgBtnItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="8dp"
+                android:layout_marginLeft="7dp"
+                android:padding="9dp"
                 app:srcCompat="@android:drawable/ic_menu_delete" />
 
         </TableRow>
 
         <TableRow
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp">
 
             <TextView
@@ -90,12 +104,13 @@
                 android:id="@+id/AmountMedItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
+                android:layout_marginLeft="20dp"
                 android:text="1500 mg"
                 android:textColor="@color/black"
                 android:textSize="15sp">
 
             </TextView>
+
         </TableRow>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

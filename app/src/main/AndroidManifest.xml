@@ -45,6 +45,8 @@
             android:label="Medication"/>
         <activity android:name=".Create_Account"
             android:label="PHMS"/>
+        <receiver android:name=".MedAlarmReciever"></receiver>
+
     </application>
 
 </manifest>

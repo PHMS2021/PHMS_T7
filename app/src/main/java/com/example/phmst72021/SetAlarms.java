@@ -2,16 +2,29 @@ package com.example.phmst72021;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.AlarmManager;
+import android.app.Dialog;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,11 +34,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    TextView a_AddAlarmsTitle, a_TimeSet, a_RepeatDaysAlarm, a_MedsTitleSpinner;
-    Button a_SelectTimeBtn, a_SetAlarmBtn;
+public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSelectedListener, TimePickerDialog.OnTimeSetListener {
+
+    private NotifyMedAlarm notifyMedAlarm;
+
+    TextView a_AddAlarmsTitle, a_TimeSet, a_RepeatDaysAlarm, a_MedsTitleSpinner, a_AlarmNotesTitle;
+    EditText a_AlarmNotes;
+    Button a_SelectTimeBtn, a_SetAlarmBtn, a_CancelAlarmBtn;
+    ImageButton a_BackImgBtn;
 
     FirebaseAuth fAuth;
     DatabaseReference firebaseRef;
@@ -34,25 +53,33 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_set_alarms);
+
 
         // Text Views
         a_AddAlarmsTitle = findViewById(R.id.AddAlarmsTitle);
         a_TimeSet = findViewById(R.id.timeSet);
-        a_RepeatDaysAlarm = findViewById(R.id.RepeatDaysAlarm);
+
+        // a_RepeatDaysAlarm = findViewById(R.id.RepeatDaysAlarm);
         a_MedsTitleSpinner = findViewById(R.id.MedsTitleSpinner);
+        a_AlarmNotesTitle = findViewById(R.id.AlarmNotesTitle);
+
+        // EditText
+        a_AlarmNotes = findViewById(R.id.AlarmNotes);
+        notifyMedAlarm = new NotifyMedAlarm(this);
 
         // Spinner
         Spinner a_MedsNameSpinner = findViewById(R.id.MedNameSpinner);
         medNames = new ArrayList<>();
 
-
-        firebaseRef = FirebaseDatabase.getInstance().getReference("Medication");
-        firebaseRef.child("User2").addValueEventListener(new ValueEventListener() {
+        String currentUser = fAuth.getInstance().getCurrentUser().getUid();
+        firebaseRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser);
+        firebaseRef.child("Medications").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                for(DataSnapshot childSnapshot: snapshot.getChildren()) {
-                   String spinnerMeds = childSnapshot.child("Medication Name").getValue(String.class);
+                   String spinnerMeds = childSnapshot.child("medName").getValue(String.class);
                    medNames.add(spinnerMeds);
                 }
                 ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(SetAlarms.this, android.R.layout.simple_spinner_item,medNames);
@@ -70,31 +97,118 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
 
         });
 
+
+
+
+
         // Buttons
-        a_SelectTimeBtn = findViewById(R.id.selectTimeBtn);
-        a_SetAlarmBtn = findViewById(R.id.setAlarmBtn);
 
-        a_SetAlarmBtn.setOnClickListener(new View.OnClickListener() {
+        //a_SetAlarmBtn = findViewById(R.id.setAlarmBtn);
+        a_CancelAlarmBtn = findViewById(R.id.cancelAlarmBtn);
+        a_BackImgBtn = findViewById(R.id.a_BackImgBtn);
+
+        a_BackImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-
-                Intent MyAlarms = new Intent(SetAlarms.this,MyAlarms.class);
-                startActivity(MyAlarms);
+            public void onClick(View view) {
+                Intent Meds = new Intent(SetAlarms.this,Medication.class);
+                startActivity(Meds);
                 finish();
             }
         });
+
+        a_SelectTimeBtn = findViewById(R.id.selectTimeBtn);
+        a_SelectTimeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment timePicker = new TimePickerFrag();
+                timePicker.show(getSupportFragmentManager(), "time picker");
+            }
+        });
+
+        a_CancelAlarmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cancelAlarm();
+            }
+        });
+
+
+
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String selectedmeasure=parent.getItemAtPosition(position).toString();
-        Toast.makeText(this,selectedmeasure,Toast.LENGTH_SHORT).show();
+        String selectedmeasure = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(this,selectedmeasure,Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE,minute);
+        c.set(Calendar.SECOND,0);
+
+
+        if (hourOfDay > 12) {
+            if(minute < 10){
+            a_TimeSet.setText("Alarm set at:\n" +hourOfDay + ":0" + minute + " PM");
+            }
+            else {
+                a_TimeSet.setText("Alarm set at:\n "+hourOfDay + ":" + minute + " PM");
+            }
+        } else {
+            if(minute < 10){
+                a_TimeSet.setText("Alarm set at:\n "+hourOfDay + ":0" + minute + " AM");
+            }
+            else {
+                a_TimeSet.setText("Alarm set at:\n "+hourOfDay + ":" + minute + " AM");
+            }
+        }
+        //updateTimeText(c);
+        startAlarm(c);
+        //Toast.makeText(this,"Alarm Set!",Toast.LENGTH_SHORT).show();
+
+    }
+    private void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, MedAlarmReciever.class);
+        intent.putExtra("MedName","Tylenol");
+        intent.putExtra("Message", "Time to take 1 Tylenol pill!");
+
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
+
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, MedAlarmReciever.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.cancel(pendingIntent);
+        a_TimeSet.setText("Alarm canceled");
+    }
+
+    /*private void updateTimeText (Calendar c){
+        String timeText = "Alarm set for: ";
+        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+
+        a_TimeSet.setText(timeText);
+    }*/
+
 }

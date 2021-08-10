@@ -38,8 +38,8 @@ public class Medication extends AppCompatActivity {
         a_AlarmsImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent MyAlarms = new Intent(Medication.this,MyAlarms.class);
-                startActivity(MyAlarms);
+                Intent SetAlarms = new Intent(Medication.this,SetAlarms.class);
+                startActivity(SetAlarms);
                 //finish();
             }
         });
