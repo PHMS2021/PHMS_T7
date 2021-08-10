@@ -65,7 +65,6 @@ public class MyMedications extends AppCompatActivity implements MedsAdapter.OnMe
                     list.add(meds);
                 }
                 medsAdapter.notifyDataSetChanged();
-
             }
 
             @Override

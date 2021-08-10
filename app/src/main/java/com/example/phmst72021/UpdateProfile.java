@@ -83,6 +83,8 @@ public class UpdateProfile extends AppCompatActivity {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         doctorNote = findViewById(R.id.doctor_note);
+
+
         annualCheckUpDate = findViewById(R.id.annualCheckUpDate);
         annualCheckUpDate.setInputType(InputType.TYPE_NULL);
         annualCheckUpDate.setOnClickListener(v -> {
@@ -120,6 +122,7 @@ public class UpdateProfile extends AppCompatActivity {
             }
         });
     }
+
 
     public void updateProfile(){
         database = FirebaseDatabase.getInstance();

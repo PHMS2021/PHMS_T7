@@ -41,8 +41,6 @@ public class ViewMed extends AppCompatActivity {
         NotesTitleView = findViewById(R.id.NotesTitleView);
         NotesView = findViewById(R.id.NotesView);
 
-
-
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             medName = extras.getString("MedName");
@@ -61,8 +59,6 @@ public class ViewMed extends AppCompatActivity {
         AmntView.setText(amount);
         DosageView.setText(dosage);
         NotesView.setText(notes);
-
-
 
         //Back Button
         BackImgBtnArrow = findViewById(R.id.BackImgBtn);

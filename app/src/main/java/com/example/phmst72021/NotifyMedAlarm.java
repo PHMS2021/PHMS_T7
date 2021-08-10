@@ -14,7 +14,7 @@ public class NotifyMedAlarm extends ContextWrapper {
     public static final String channelID = "channelID";
     public static final String channelName = "Channel Name";
 
-    private NotificationManager mManager;
+    private NotificationManager notifyManager;
 
     public NotifyMedAlarm(Context base) {
         super(base);
@@ -22,19 +22,18 @@ public class NotifyMedAlarm extends ContextWrapper {
             createChannel();
         }
     }
+
     @TargetApi(Build.VERSION_CODES.O)
     private void createChannel() {
         NotificationChannel channel = new NotificationChannel(channelID, channelName, NotificationManager.IMPORTANCE_HIGH);
-
         getManager().createNotificationChannel(channel);
     }
 
     public NotificationManager getManager() {
-        if (mManager == null) {
-            mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notifyManager == null) {
+            notifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }
-
-        return mManager;
+        return notifyManager;
     }
 
     public NotificationCompat.Builder getChannelNotification(String title, String message) {
@@ -43,5 +42,4 @@ public class NotifyMedAlarm extends ContextWrapper {
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_launcher_background);
     }
-
 }

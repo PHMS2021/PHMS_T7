@@ -15,9 +15,9 @@ public class TimePickerFrag extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
+        Calendar timepick = Calendar.getInstance();
+        int hour = timepick.get(Calendar.HOUR_OF_DAY);
+        int minute = timepick.get(Calendar.MINUTE);
 
         return new TimePickerDialog(getActivity(),(TimePickerDialog.OnTimeSetListener) getActivity(),hour,minute, DateFormat.is24HourFormat(getActivity()));
     }

@@ -43,7 +43,7 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
 
     TextView a_AddAlarmsTitle, a_TimeSet, a_RepeatDaysAlarm, a_MedsTitleSpinner, a_AlarmNotesTitle;
     EditText a_AlarmNotes;
-    Button a_SelectTimeBtn, a_SetAlarmBtn, a_CancelAlarmBtn;
+    Button a_SelectTimeBtn, a_CancelAlarmBtn;
     ImageButton a_BackImgBtn;
 
     FirebaseAuth fAuth;
@@ -53,15 +53,12 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_set_alarms);
-
 
         // Text Views
         a_AddAlarmsTitle = findViewById(R.id.AddAlarmsTitle);
         a_TimeSet = findViewById(R.id.timeSet);
-
-        // a_RepeatDaysAlarm = findViewById(R.id.RepeatDaysAlarm);
+        /*a_RepeatDaysAlarm = findViewById(R.id.RepeatDaysAlarm);*/
         a_MedsTitleSpinner = findViewById(R.id.MedsTitleSpinner);
         a_AlarmNotesTitle = findViewById(R.id.AlarmNotesTitle);
 
@@ -73,6 +70,7 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
         Spinner a_MedsNameSpinner = findViewById(R.id.MedNameSpinner);
         medNames = new ArrayList<>();
 
+        // Populate Spinner depending what medication you added
         String currentUser = fAuth.getInstance().getCurrentUser().getUid();
         firebaseRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser);
         firebaseRef.child("Medications").addValueEventListener(new ValueEventListener() {
@@ -93,20 +91,11 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-
         });
 
 
-
-
-
         // Buttons
-
-        //a_SetAlarmBtn = findViewById(R.id.setAlarmBtn);
-        a_CancelAlarmBtn = findViewById(R.id.cancelAlarmBtn);
         a_BackImgBtn = findViewById(R.id.a_BackImgBtn);
-
         a_BackImgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,16 +114,13 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
             }
         });
 
+        a_CancelAlarmBtn = findViewById(R.id.cancelAlarmBtn);
         a_CancelAlarmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cancelAlarm();
             }
         });
-
-
-
-
     }
 
     @Override
@@ -151,12 +137,13 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        c.set(Calendar.MINUTE,minute);
-        c.set(Calendar.SECOND,0);
+        // Get time from time picker
+        Calendar timepick = Calendar.getInstance();
+        timepick.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        timepick.set(Calendar.MINUTE,minute);
+        timepick.set(Calendar.SECOND,0);
 
-
+        // Make the correct format for time when time is set
         if (hourOfDay > 12) {
             if(minute < 10){
             a_TimeSet.setText("Alarm set at:\n" +hourOfDay + ":0" + minute + " PM");
@@ -172,27 +159,25 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
                 a_TimeSet.setText("Alarm set at:\n "+hourOfDay + ":" + minute + " AM");
             }
         }
-        //updateTimeText(c);
-        startAlarm(c);
-        //Toast.makeText(this,"Alarm Set!",Toast.LENGTH_SHORT).show();
-
+        startAlarm(timepick);
     }
-    private void startAlarm(Calendar c) {
+
+
+    private void startAlarm(Calendar timepick) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, MedAlarmReciever.class);
+
+        // Checking to see if intent will pass in title & message
         intent.putExtra("MedName","Tylenol");
         intent.putExtra("Message", "Time to take 1 Tylenol pill!");
 
-
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
-        if (c.before(Calendar.getInstance())) {
-            c.add(Calendar.DATE, 1);
+        if (timepick.before(Calendar.getInstance())) {
+            timepick.add(Calendar.DATE, 1);
         }
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-
-
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timepick.getTimeInMillis(), pendingIntent);
     }
 
     private void cancelAlarm() {
@@ -203,12 +188,4 @@ public class SetAlarms extends AppCompatActivity implements AdapterView.OnItemSe
         alarmManager.cancel(pendingIntent);
         a_TimeSet.setText("Alarm canceled");
     }
-
-    /*private void updateTimeText (Calendar c){
-        String timeText = "Alarm set for: ";
-        timeText += DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
-
-        a_TimeSet.setText(timeText);
-    }*/
-
 }
