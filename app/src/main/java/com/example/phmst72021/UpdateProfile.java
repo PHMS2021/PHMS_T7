@@ -1,5 +1,6 @@
 package com.example.phmst72021;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 
 public class UpdateProfile extends AppCompatActivity {
@@ -63,6 +64,7 @@ public class UpdateProfile extends AppCompatActivity {
     LinearLayout doctors;
     private Calendar calendar;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,45 +72,39 @@ public class UpdateProfile extends AppCompatActivity {
         final DatePickerDialog[] picker = new DatePickerDialog[1];
         context = this;
         intent = getIntent();
-        userType = (RadioGroup) findViewById(R.id.radiogroup);
-        userName = (EditText) findViewById(R.id.Username);
-        email = (EditText) findViewById(R.id.email1);
-        patientNameFirst = (EditText) findViewById(R.id.patient_name_first);
-        patientNameMiddle = (EditText) findViewById(R.id.patient_name_middle);
-        patientNameLast = (EditText) findViewById(R.id.patient_name_last);
-        age = (EditText) findViewById(R.id.age);
-        weight = (EditText) findViewById(R.id.weight);
-        height = (EditText) findViewById(R.id.height);
-        doctorName = (EditText) findViewById(R.id.doctor_name);
-        visitDate = (EditText) findViewById(R.id.visit_date);
-        gender = (Spinner) findViewById(R.id.gender);
+        userType = findViewById(R.id.radiogroup);
+        userName = findViewById(R.id.Username);
+        email = findViewById(R.id.email1);
+        patientNameFirst =  findViewById(R.id.patient_name_first);
+        patientNameMiddle =  findViewById(R.id.patient_name_middle);
+        patientNameLast =  findViewById(R.id.patient_name_last);
+        age =  findViewById(R.id.age);
+        weight =  findViewById(R.id.weight);
+        height =  findViewById(R.id.height);
+        doctorName =  findViewById(R.id.doctor_name);
+        visitDate = findViewById(R.id.visit_date);
+        gender = findViewById(R.id.gender);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         annualCheckUpDate = findViewById(R.id.annualCheckUpDate);
         annualCheckUpDate.setInputType(InputType.TYPE_NULL);
-        annualCheckUpDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
+        annualCheckUpDate.setOnClickListener(v -> {
+            final Calendar cldr = Calendar.getInstance();
+            int day = cldr.get(Calendar.DAY_OF_MONTH);
+            int month = cldr.get(Calendar.MONTH);
+            int year = cldr.get(Calendar.YEAR);
 
-                //date picker dialog
-                picker[0] = new DatePickerDialog(UpdateProfile.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        annualCheckUpDate.setText((month+1)+"/"+dayOfMonth+"/"+year);
-                    }
-                },year,month,day);
-                picker[0].show();
-            }
+            //date picker dialog
+            picker[0] = new DatePickerDialog(UpdateProfile.this, (view, year1, month1, dayOfMonth) -> annualCheckUpDate.setText((month1 +1)+"/"+dayOfMonth+"/"+ year1),year,month,day);
+            picker[0].show();
         });
-        submit = findViewById(R.id.submit);
         ProfileNode = FirebaseDatabase.getInstance();
-        userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    }
+}
+ /*       userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup userType, int checkedId) {
                 RadioButton checkedRadioButton = (RadioButton) findViewById(checkedId);
@@ -117,9 +113,11 @@ public class UpdateProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), userTypeText, Toast.LENGTH_SHORT).show();
             }
         });
-        String currentUser = mAuth.getInstance().getCurrentUser().getUid();
     }
+
 }
+
+  */
 
 
 

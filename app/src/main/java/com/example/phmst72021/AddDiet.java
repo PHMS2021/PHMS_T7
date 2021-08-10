@@ -8,12 +8,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddDiet extends AppCompatActivity {
 
-    EditText calorie, water, Food, recipes, description, articles, notes;
+    EditText calorie, water, Food, recipes, description, articles = findViewById(R.id.articles), notes;
     Button submit;
     User user;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -23,20 +24,14 @@ public class AddDiet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_diet);
         user = getIntent().getParcelableExtra("User");
-        calorie = (EditText) findViewById(R.id.calorie);
-        water = (EditText) findViewById(R.id.water);
-        Food = (EditText) findViewById(R.id.daily_food);
-        recipes = (EditText) findViewById(R.id.recipes);
-        description = (EditText) findViewById(R.id.description);
-        articles = (EditText) findViewById(R.id.articles);
-        notes = (EditText) findViewById(R.id.general_notes);
-        submit = (Button) findViewById(R.id.submit);
+        calorie = findViewById(R.id.calorie);
+        water = findViewById(R.id.water);
+        Food = findViewById(R.id.daily_food);
+        recipes = findViewById(R.id.recipes);
+        description = findViewById(R.id.description);
+        notes = findViewById(R.id.general_notes);
+        submit = findViewById(R.id.submit);
         submit.setOnClickListener(v -> {
-            Diet diet = new Diet(user.userName, calorie.getText().toString(), water.getText().toString(),
-                    Food.getText().toString(), recipes.getText().toString(),
-                    description.getText().toString(), articles.getText().toString(),
-                    notes.getText().toString());
-            ref.child(diet.userName).setValue(diet);
             Toast.makeText(v.getContext(), "Diet Saved Successfully", Toast.LENGTH_SHORT).show();
             Intent newIntent = new Intent(v.getContext(), Home.class);
             newIntent.putExtra("User", user);

@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class Home extends AppCompatActivity {
 
     Button update, delete, diet, meds,logout;
@@ -31,25 +33,24 @@ public class Home extends AppCompatActivity {
 
     DatabaseReference ref = database.getReference("Users");
     Intent intent;
-    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        update = (Button) findViewById(R.id.update);
-        delete = (Button) findViewById(R.id.delete);
-        diet = (Button) findViewById(R.id.diet);
-        meds = (Button) findViewById(R.id.meds);
-        logout = (Button) findViewById(R.id.LogOut);
+        update = findViewById(R.id.update);
+        delete = findViewById(R.id.delete);
+        diet = findViewById(R.id.diet);
+        meds =  findViewById(R.id.meds);
+        logout =  findViewById(R.id.LogOut);
     }
     public void onDeleteClick(View view){
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 AuthCredential credential = EmailAuthProvider.getCredential("user@example.com", "password1234");
-                String currentUser = mAuth.getInstance().getCurrentUser().getUid();
+                String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
                 assert user != null;
                 user.reauthenticate(credential).addOnCompleteListener(task -> user.delete().addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
@@ -87,7 +88,6 @@ public class Home extends AppCompatActivity {
 
     public void onMedsClick(View view){
         Intent newIntent = new Intent(view.getContext(), Medication.class);
-        newIntent.putExtra("User", user);
         startActivity(newIntent);
        // close();
     }

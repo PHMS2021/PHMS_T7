@@ -1,4 +1,4 @@
-package com.example.phmst72021;
+/*package com.example.phmst72021;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -140,48 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.finish();
     }
 
-    @Override
-    public void onClick(View v) {
-        addDoctorView();
-    }
 
-    private void addDoctorView() {
-        @SuppressLint("InflateParams") View doctorView = getLayoutInflater().inflate(R.layout.row_add_doctor, null, false);
-        doctors.addView(doctorView);
-        removeBtn = (Button) doctorView.findViewById(R.id.remove_doctor);
-        EditText visit = (EditText)  doctorView.findViewById(R.id.visit_date);
-        EditText annual = (EditText)  doctorView.findViewById(R.id.checkup_date);
-        visit.setOnClickListener(v -> {
-            // TODO Auto-generated method stub
-            DatePickerDialog datePickerDialog;
-            datePickerDialog = new DatePickerDialog(v.getContext(), (arg0, arg1, arg2, arg3) -> {
-                // TODO Auto-generated method stub
-                // arg1 = year
-                // arg2 = month
-                // arg3 = day
-                visit.setText(new StringBuilder().append(arg3).append("/")
-                        .append(arg2).append("/").append(arg1));
-            }, year, month, day);
-            datePickerDialog.setTitle("Select Visit Date");
-            datePickerDialog.show();
-        });
-        annual.setOnClickListener(v -> {
-            // TODO Auto-generated method stub
-            DatePickerDialog datePickerDialog;
-            datePickerDialog = new DatePickerDialog(v.getContext(), (arg0, arg1, arg2, arg3) -> {
-                // TODO Auto-generated method stub
-                // arg1 = year
-                // arg2 = month
-                // arg3 = day
-                annual.setText(new StringBuilder().append(arg3).append("/")
-                        .append(arg2).append("/").append(arg1));
-            }, year, month, day);
-            datePickerDialog.setTitle("Select Visit Date");
-            datePickerDialog.show();
-        });
-        removeBtn.setOnClickListener(v -> doctors.removeView(doctorView));
-    }
-}
 
 class Detail implements Parcelable {
     String doctorName;
@@ -258,30 +217,6 @@ class User implements Parcelable{
     String height;
     String role;
     ArrayList<Detail> details;
-
-    public User(String userName, String password, String patientName, String role, String gender, String age, String weight, String height, ArrayList<Detail> details) {
-        this.userName = userName;
-        this.password = password;
-        this.patientName = patientName;
-        this.gender = gender;
-        this.age = age;
-        this.weight = weight;
-        this.role = role;
-        this.height = height;
-        this.details = details;
-    }
-
-    protected User(Parcel in) {
-        userName = in.readString();
-        password = in.readString();
-        patientName = in.readString();
-        gender = in.readString();
-        age = in.readString();
-        weight = in.readString();
-        height = in.readString();
-        role = in.readString();
-        details = in.createTypedArrayList(Detail.CREATOR);
-    }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
@@ -384,4 +319,7 @@ class User implements Parcelable{
         dest.writeString(role);
         dest.writeTypedList(details);
     }
+    }
 }
+
+ */
