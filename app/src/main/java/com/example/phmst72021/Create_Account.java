@@ -56,14 +56,17 @@ public class Create_Account extends AppCompatActivity {
 
     public void checkEmailCreate(String email, String password, FirebaseAuth ref1) {
         ref1.fetchSignInMethodsForEmail(email)
-                .addOnCompleteListener(task -> {
-                    boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
-                    if (isNewUser) {
-                        createAccount(email, password);
-                    } else {
-                        {
-                            Log.e("Check Email Create", "Email exists");
-                            Toast.makeText(Create_Account.this, "Email in use! Click 'Forgot Password' to receive reset email", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                        if (isNewUser) {
+                            createAccount(email, password);
+                        } else {
+                            {
+                                Log.e("Check Email Create", "Email exists");
+                                Toast.makeText(Create_Account.this, "Email in use! Click 'Forgot Password' to receive reset email", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
@@ -71,26 +74,29 @@ public class Create_Account extends AppCompatActivity {
 
     public void checkEmailReset(String email, FirebaseAuth ref1) {
         ref1.fetchSignInMethodsForEmail(email)
-                .addOnCompleteListener(task -> {
-                    boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
-                    if (isNewUser) {
-                        Log.e("Check Email Reset", "Email does not exist");
-                        Toast.makeText(Create_Account.this, "Email not in use! Click 'Create Account' to create account", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                        if (isNewUser) {
+                            Log.e("Check Email Reset", "Email does not exist");
+                            Toast.makeText(Create_Account.this, "Email not in use! Click 'Create Account' to create account", Toast.LENGTH_SHORT).show();
+                        }
+                        else
                         {
-                            mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "Email sent.");
-                                        Toast.makeText(Create_Account.this, "Reset Password email sent to " + email, Toast.LENGTH_SHORT).show();
+                            {
+                                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.d(TAG, "Email sent.");
+                                            Toast.makeText(Create_Account.this, "Reset Password email sent to " + email, Toast.LENGTH_SHORT).show();
+                                        }
+                                        else
+                                            Toast.makeText(Create_Account.this, "Reset Password failed: " + email, Toast.LENGTH_SHORT).show();
                                     }
-                                    else
-                                        Toast.makeText(Create_Account.this, "Reset Password failed: " + email, Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                });
+                            }
                         }
                     }
                 });

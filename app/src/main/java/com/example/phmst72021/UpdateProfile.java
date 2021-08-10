@@ -48,12 +48,13 @@ public class UpdateProfile extends AppCompatActivity {
     RadioGroup userType;
     RadioButton radioButton;
 
-    Button addBtn, removeBtn, submit;
+    Button addBtn, removeBtn, btn_submit;
     int year, day, month;
     private View v;
     Intent intent;
     Context context;
     LinearLayout doctors;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +66,13 @@ public class UpdateProfile extends AppCompatActivity {
         userType = findViewById(R.id.radiogroup);
         userName = findViewById(R.id.Username);
         email = findViewById(R.id.email1);
-        patientNameFirst =  findViewById(R.id.patient_name_first);
-        patientNameMiddle =  findViewById(R.id.patient_name_middle);
-        patientNameLast =  findViewById(R.id.patient_name_last);
-        age =  findViewById(R.id.age);
-        weight =  findViewById(R.id.weight);
-        height =  findViewById(R.id.height);
-        doctorName =  findViewById(R.id.doctor_name);
+        patientNameFirst = findViewById(R.id.patient_name_first);
+        patientNameMiddle = findViewById(R.id.patient_name_middle);
+        patientNameLast = findViewById(R.id.patient_name_last);
+        age = findViewById(R.id.age);
+        weight = findViewById(R.id.weight);
+        height = findViewById(R.id.height);
+        doctorName = findViewById(R.id.doctor_name);
         visitDate = findViewById(R.id.visit_date);
         gender = findViewById(R.id.gender);
         Calendar calendar = Calendar.getInstance();
@@ -88,11 +89,32 @@ public class UpdateProfile extends AppCompatActivity {
             int year = cldr.get(Calendar.YEAR);
 
             //date picker dialog
-            picker[0] = new DatePickerDialog(UpdateProfile.this, (view, year1, month1, dayOfMonth) -> annualCheckUpDate.setText((month1 +1)+"/"+dayOfMonth+"/"+ year1),year,month,day);
+            picker[0] = new DatePickerDialog(UpdateProfile.this, (view, year1, month1, dayOfMonth) -> annualCheckUpDate.setText((month1 + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
             picker[0].show();
         });
-        ProfileNode = FirebaseDatabase.getInstance();
-        String currentUser = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        visitDate = findViewById(R.id.visit_date);
+        visitDate.setInputType(InputType.TYPE_NULL);
+        visitDate.setOnClickListener(v -> {
+            final Calendar cldr = Calendar.getInstance();
+            int day = cldr.get(Calendar.DAY_OF_MONTH);
+            int month = cldr.get(Calendar.MONTH);
+            int year = cldr.get(Calendar.YEAR);
+
+            //date picker dialog
+            picker[0] = new DatePickerDialog(UpdateProfile.this, (view, year1, month1, dayOfMonth) -> visitDate.setText((month1 + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
+            picker[0].show();
+        });
+
+        btn_submit = findViewById(R.id.btn_submit);
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateProfile();
+                Intent MyMeds = new Intent(UpdateProfile.this, Home.class);
+                startActivity(MyMeds);
+                finish();
+            }
+        });
     }
 
     public void updateProfile(){
@@ -105,32 +127,52 @@ public class UpdateProfile extends AppCompatActivity {
                 Integer id = userType.getId();
                 String userTypeText = id.toString();
                 Toast.makeText(getApplicationContext(), userTypeText, Toast.LENGTH_SHORT).show();
+
+                String UserType = radioButton.getText().toString().trim();
             }
         });
-        Log.d("Create Profile for: ", currentUser);
-        HashMap hashMap = new HashMap();
-        hashMap.put("userName", userName);
-        hashMap.put("gender", gender);
-        hashMap.put("patientNameFirst", patientNameFirst);
-        hashMap.put("patientNameMiddle", patientNameMiddle);
-        hashMap.put("patientNameLast", patientNameLast);
-        hashMap.put("age", age);
-        hashMap.put("weight", weight);
-        hashMap.put("height", height);
-        hashMap.put("doctorName", doctorName);
-        hashMap.put("visitDate", visitDate);
-        hashMap.put("annualCheckUpDate", annualCheckUpDate);
-        hashMap.put("userType", userType);
-        hashMap.put("doctorNote", doctorNote);
+        String UserName = userName.getText().toString().trim(),
+        PatientNameFirst = patientNameFirst.getText().toString().trim(),
+        PatientNameMiddle = patientNameMiddle.getText().toString().trim(),
+        PatientNameLast = patientNameLast.getText().toString().trim(),
+        Age = age.getText().toString().trim(),
+        Weight = weight.getText().toString().trim(),
+        Height = height.getText().toString().trim(),
+        DoctorName = doctorName.getText().toString().trim(),
+        VisitDate = visitDate.getText().toString().trim(),
+        Gender = gender.getText().toString().trim(),
+        AnnualCheckUpDate = annualCheckUpDate.getText().toString().trim(),
+        DoctorNote = doctorNote.getText().toString().trim();
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        Log.d("Update Profile for: ", currentUser);
+        HashMap hashMap2 = new HashMap();
+        hashMap2.put("/age/", Age);
+        hashMap2.put("/annualCheckUpDate/", AnnualCheckUpDate);
+        hashMap2.put("/doctorName/", DoctorName);
+        hashMap2.put("/doctorNote/", DoctorNote);
+        hashMap2.put("/gender/", Gender);
+        hashMap2.put("/height/", Height);
+        hashMap2.put("/patientNameFirst/", PatientNameFirst);
+        hashMap2.put("patientNameLast/", PatientNameLast);
+        hashMap2.put("/patientNameMiddle/", PatientNameMiddle);
+        hashMap2.put("/userName/", UserName);
+        hashMap2.put("/userType/", userType);
+        hashMap2.put("/visitDate/", VisitDate);
+        hashMap2.put("/weight/", Weight);
+
         ref = database.getReference("Users").child(currentUser).child("Profile");
         Log.d("Update Profile at", String.valueOf(ref));
-        Log.d("Update Profile with", String.valueOf(hashMap));
-        ref.updateChildren(hashMap).addOnCompleteListener(this, task -> {
+        Log.d("Update Profile with", String.valueOf(hashMap2));
+        ref.child("Profile").updateChildren(hashMap2).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
-                Log.d("Create Profile successful for: ", currentUser);
+                Log.d("Update Profile successful for: ", currentUser);
+                Toast.makeText(UpdateProfile.this, "Profile Updated.", Toast.LENGTH_SHORT).show();
             } else {
-                Log.e("Create Profile failed for: ", currentUser + " because: " + task.getException());
-                Toast.makeText(UpdateProfile.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                Log.e("Update Profile failed for: ", currentUser + " because: " + task.getException());
+                Toast.makeText(UpdateProfile.this, "Update failed.", Toast.LENGTH_SHORT).show();
             }
 
         });

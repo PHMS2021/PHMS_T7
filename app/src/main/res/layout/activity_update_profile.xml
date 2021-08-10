@@ -242,6 +242,48 @@
             android:paddingRight="50dp"
             android:layout_marginBottom="20dp">
             <EditText
+                android:id="@+id/doctor_name"
+                android:background="@drawable/round_grey"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textColor="@color/black"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Doctor's Name"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp">
+            </EditText>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_marginBottom="20dp">
+        <EditText
+            android:id="@+id/visit_date"
+            android:background="@drawable/round_grey"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="Visit Date"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp">
+        </EditText>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_marginBottom="20dp">
+            <EditText
                 android:id="@+id/doctor_note"
                 android:background="@drawable/round_grey"
                 android:layout_width="match_parent"
@@ -283,7 +325,7 @@
         android:orientation="vertical"
         android:layout_marginHorizontal="20dp">
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
