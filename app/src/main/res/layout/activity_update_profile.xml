@@ -23,6 +23,7 @@
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:id="@+id/patient"
                     android:layout_width="wrap_content"
                     android:text="@string/patient"
                     android:textSize="20sp"
@@ -30,6 +31,7 @@
                     android:textColor="@color/white"
                     android:layout_height="wrap_content"/>
                 <RadioButton
+                    android:id="@+id/caretaker"
                     android:layout_width="wrap_content"
                     android:text="@string/caretaker"
                     android:layout_marginHorizontal="20dp"

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -54,6 +55,8 @@ public class UpdateProfile extends AppCompatActivity {
     Intent intent;
     Context context;
     LinearLayout doctors;
+
+
 
 
     @Override
@@ -92,6 +95,7 @@ public class UpdateProfile extends AppCompatActivity {
             picker[0] = new DatePickerDialog(UpdateProfile.this, (view, year1, month1, dayOfMonth) -> annualCheckUpDate.setText((month1 + 1) + "/" + dayOfMonth + "/" + year1), year, month, day);
             picker[0].show();
         });
+
         visitDate = findViewById(R.id.visit_date);
         visitDate.setInputType(InputType.TYPE_NULL);
         visitDate.setOnClickListener(v -> {
@@ -120,17 +124,6 @@ public class UpdateProfile extends AppCompatActivity {
     public void updateProfile(){
         database = FirebaseDatabase.getInstance();
         String currentUser = mAuth.getInstance().getCurrentUser().getUid();
-        userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup userType, int checkedId) {
-                RadioButton checkedRadioButton = (RadioButton) findViewById(checkedId);
-                Integer id = userType.getId();
-                String userTypeText = id.toString();
-                Toast.makeText(getApplicationContext(), userTypeText, Toast.LENGTH_SHORT).show();
-
-                String UserType = radioButton.getText().toString().trim();
-            }
-        });
         String UserName = userName.getText().toString().trim(),
         PatientNameFirst = patientNameFirst.getText().toString().trim(),
         PatientNameMiddle = patientNameMiddle.getText().toString().trim(),
@@ -147,25 +140,30 @@ public class UpdateProfile extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+        userType = (RadioGroup) findViewById(R.id.radiogroup);
+        String UserType = ((RadioButton) findViewById(userType.getCheckedRadioButtonId())).getText().toString();
         Log.d("Update Profile for: ", currentUser);
         HashMap hashMap2 = new HashMap();
-        hashMap2.put("/age/", Age);
-        hashMap2.put("/annualCheckUpDate/", AnnualCheckUpDate);
-        hashMap2.put("/doctorName/", DoctorName);
-        hashMap2.put("/doctorNote/", DoctorNote);
-        hashMap2.put("/gender/", Gender);
-        hashMap2.put("/height/", Height);
-        hashMap2.put("/patientNameFirst/", PatientNameFirst);
-        hashMap2.put("patientNameLast/", PatientNameLast);
-        hashMap2.put("/patientNameMiddle/", PatientNameMiddle);
-        hashMap2.put("/userName/", UserName);
-        hashMap2.put("/userType/", userType);
-        hashMap2.put("/visitDate/", VisitDate);
-        hashMap2.put("/weight/", Weight);
+        hashMap2.put("age", Age);
+        hashMap2.put("annualCheckUpDate", AnnualCheckUpDate);
+        hashMap2.put("doctorName", DoctorName);
+        hashMap2.put("doctorNote", DoctorNote);
+        hashMap2.put("gender", Gender);
+        hashMap2.put("height", Height);
+        hashMap2.put("patientNameFirst", PatientNameFirst);
+        hashMap2.put("patientNameLast", PatientNameLast);
+        hashMap2.put("patientNameMiddle", PatientNameMiddle);
+        hashMap2.put("userName", UserName);
+        hashMap2.put("userType", UserType.trim());
+        hashMap2.put("visitDate", VisitDate);
+        hashMap2.put("weight", Weight);
+
 
         ref = database.getReference("Users").child(currentUser).child("Profile");
         Log.d("Update Profile at", String.valueOf(ref));
         Log.d("Update Profile with", String.valueOf(hashMap2));
+
+        ref.updateChildren(hashMap2);
         ref.child("Profile").updateChildren(hashMap2).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 Log.d("Update Profile successful for: ", currentUser);
