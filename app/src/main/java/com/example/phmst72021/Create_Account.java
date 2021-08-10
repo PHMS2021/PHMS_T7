@@ -12,30 +12,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
+
 public class Create_Account extends AppCompatActivity {
     private static final String TAG = "Account";
     private FirebaseAuth mAuth;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("Users");
     EditText email, password;
-
+    String userName = "", gender = "", patientNameFirst = "", patientNameMiddle = "",
+            patientNameLast = "", age = "", weight = "", height = "", doctorName = "",
+            visitDate = "", annualCheckUpDate = "", userType = "", doctorNote = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
-        email = (EditText) findViewById(R.id.editTextEmailAddress);
-        password = (EditText) findViewById(R.id.editTextPassword);
+        email = findViewById(R.id.editTextEmailAddress);
+        password = findViewById(R.id.editTextPassword);
 
         mAuth = FirebaseAuth.getInstance();
     }
@@ -49,19 +54,103 @@ public class Create_Account extends AppCompatActivity {
         }
     }
 
+    public void checkEmailCreate(String email, String password, FirebaseAuth ref1) {
+        ref1.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(task -> {
+                    boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                    if (isNewUser) {
+                        createAccount(email, password);
+                    } else {
+                        {
+                            Log.e("Check Email Create", "Email exists");
+                            Toast.makeText(Create_Account.this, "Email in use! Click 'Forgot Password' to receive reset email", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    public void checkEmailReset(String email, FirebaseAuth ref1) {
+        ref1.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(task -> {
+                    boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                    if (isNewUser) {
+                        Log.e("Check Email Reset", "Email does not exist");
+                        Toast.makeText(Create_Account.this, "Email not in use! Click 'Create Account' to create account", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        {
+                            mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d(TAG, "Email sent.");
+                                        Toast.makeText(Create_Account.this, "Reset Password email sent to " + email, Toast.LENGTH_SHORT).show();
+                                    }
+                                    else
+                                        Toast.makeText(Create_Account.this, "Reset Password failed: " + email, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
+    }
+
+
     public void createAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Log.d(TAG, "createUserWithEmail:success - " + email + " " + password);
+                        Log.d(TAG, "createUserWithEmail:success - " + email);
                         FirebaseUser user = mAuth.getCurrentUser();
+                        String currentUser = mAuth.getInstance().getCurrentUser().getUid();
                         updateUI(user);
+                        database = FirebaseDatabase.getInstance();
+                        ref = database.getReference("Users").child(currentUser);
+                        Log.d("Create Account for: ", currentUser);
+                        Log.d("Create Account at: ", String.valueOf(ref));
+                        ref.setValue(currentUser);
+                        createProfile();
+                        sendEmailVerification();
                         Intent intent = new Intent(Create_Account.this, Login.class);
                         startActivity(intent);
-                    } else {
+                    }
+                    else {
                         Log.w(TAG, "createUserWithEmail:failure - " + email + " " + password, task.getException());
                         Toast.makeText(Create_Account.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void createProfile(){
+        database = FirebaseDatabase.getInstance();
+        String currentUser = mAuth.getInstance().getCurrentUser().getUid();
+        Log.d("Create Profile for: ", currentUser);
+        HashMap hashMap = new HashMap();
+        hashMap.put("userName", userName);
+        hashMap.put("gender", gender);
+        hashMap.put("patientNameFirst", patientNameFirst);
+        hashMap.put("patientNameMiddle", patientNameMiddle);
+        hashMap.put("patientNameLast", patientNameLast);
+        hashMap.put("age", age);
+        hashMap.put("weight", weight);
+        hashMap.put("height", height);
+        hashMap.put("doctorName", doctorName);
+        hashMap.put("visitDate", visitDate);
+        hashMap.put("annualCheckUpDate", annualCheckUpDate);
+        hashMap.put("userType", userType);
+        hashMap.put("doctorNote", doctorNote);
+        ref = database.getReference("Users").child(currentUser).child("Profile");
+        Log.d("Create Profile at", String.valueOf(ref));
+        Log.d("Create Profile as", String.valueOf(hashMap));
+        ref.updateChildren(hashMap).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                Log.d("Create Profile successful for: ", currentUser);
+            } else {
+                Log.e("Create Profile failed for: ", currentUser + " because: " + task.getException());
+                Toast.makeText(Create_Account.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     private void sendEmailVerification() {
@@ -105,8 +194,7 @@ public class Create_Account extends AppCompatActivity {
                 }
                 else {
                     Log.e("Create", email1 + " " + password1);
-                    createAccount(email1, password1);
-                    sendEmailVerification();
+                    checkEmailCreate(email1, password1, mAuth);
                 }
             }
 
@@ -114,24 +202,6 @@ public class Create_Account extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }
-    public void sendPasswordReset() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        String email1 = email.getText().toString();
-        Log.e("PW Reset",email1);
-        if(!email1.equals("") && !email1.equals(null)) {
-            auth.sendPasswordResetEmail(email1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, "Email sent.");
-                        Toast.makeText(Create_Account.this, "Reset Password email sent to " + email.getText().toString(), Toast.LENGTH_SHORT).show();
-                    } else
-                        Toast.makeText(Create_Account.this, "Reset Password failed: " + email.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        else Toast.makeText(Create_Account.this, "Email field cannot be blank", Toast.LENGTH_SHORT).show();
     }
 
     public void logInClick(View view) {
@@ -141,7 +211,15 @@ public class Create_Account extends AppCompatActivity {
     }
 
     public void ForgotPassword(View view) {
-            sendPasswordReset();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String email1 = email.getText().toString();
+        Log.e("PW Reset",email1);
+        if(!email1.equals("") && !email1.equals(null)) {
+            checkEmailReset(email1, auth);
+        }
+        else Toast.makeText(Create_Account.this, "Email field cannot be blank", Toast.LENGTH_SHORT).show();
     }
 }
+
+
 

@@ -54,7 +54,7 @@
         android:layout_marginBottom="20sp"
         >
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/email1"
             android:background="@drawable/round_grey"
             android:drawableStart="@drawable/ic_baseline_person_outline_24"
             android:paddingStart="10dp"
@@ -81,7 +81,7 @@
         android:layout_marginBottom="20dp"
         >
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/patient_name_first"
             android:background="@drawable/round_grey"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:paddingStart="10dp"
@@ -108,7 +108,7 @@
         android:layout_marginBottom="20dp"
         >
        <EditText
-           android:id="@+id/patient_name"
+           android:id="@+id/patient_name_middle"
            android:background="@drawable/round_grey"
            android:drawableStart="@drawable/ic_person"
            android:paddingStart="10dp"

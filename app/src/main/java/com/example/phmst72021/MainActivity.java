@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        userName = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        patientName = (EditText) findViewById(R.id.patient_name);
+        userName = (EditText) findViewById(R.id.email1);
+        password = (EditText) findViewById(R.id.patient_name_first);
+        patientName = (EditText) findViewById(R.id.patient_name_middle);
         type = (RadioGroup) findViewById(R.id.radiogroup);
         age = (EditText) findViewById(R.id.age);
         weight = (EditText) findViewById(R.id.weight);

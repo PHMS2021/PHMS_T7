@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,13 +49,20 @@ public class Home extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 AuthCredential credential = EmailAuthProvider.getCredential("user@example.com", "password1234");
+                String currentUser = mAuth.getInstance().getCurrentUser().getUid();
                 assert user != null;
                 user.reauthenticate(credential).addOnCompleteListener(task -> user.delete().addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
+                        Log.e("Delete", currentUser);
+                        ref = database.getReference("Users").child(currentUser);
+                        Log.e("Delete", String.valueOf(ref));
+                        ref.setValue(null);
                         Log.d("DELETE", "User account deleted.");
+                        Toast.makeText(Home.this, "Account deleted successfully", Toast.LENGTH_SHORT).show();
                     }
                 }));
-
+                Intent newIntent = new Intent(view.getContext(), Login.class);
+                startActivity(newIntent);
             }
 
             @Override

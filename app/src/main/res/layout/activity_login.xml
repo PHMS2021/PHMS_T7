@@ -23,7 +23,7 @@
             android:paddingRight="50dp">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/email1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -50,7 +50,7 @@
             android:paddingRight="50dp">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/patient_name_first"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
