@@ -265,19 +265,19 @@
             >
 
             <TextView
-                android:id="@+id/DateGivenTitle"
+                android:id="@+id/annualCheckUpTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:gravity="center"
 
-                android:text="Date Medication Given:"
+                android:text="Annual Checkup Date:"
                 android:textColor="#063970"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 />
 
             <EditText
-                android:id="@+id/DateGivenInput"
+                android:id="@+id/annualCheckUpDate"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="150dp"

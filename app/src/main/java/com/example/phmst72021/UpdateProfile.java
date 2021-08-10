@@ -21,11 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
-
 
 
 public class UpdateProfile extends AppCompatActivity {
@@ -54,9 +50,7 @@ public class UpdateProfile extends AppCompatActivity {
             "Other"
     };
 
-    private FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("Users");
     String UserName = "", Gender = "", PatientNameFirst = "",PatientNameMiddle = "",
             PatientNameLast = "", Age = "", Weight = "", Height = "", DoctorName = "",
             VisitDate = "", AnnualCheckUpDate = "", UserType = "", DoctorNote = "";
@@ -73,6 +67,7 @@ public class UpdateProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+        final DatePickerDialog[] picker = new DatePickerDialog[1];
         context = this;
         intent = getIntent();
         userType = (RadioGroup) findViewById(R.id.radiogroup);
@@ -91,7 +86,7 @@ public class UpdateProfile extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        annualCheckUpDate = findViewById(R.id.annualCheckUpDate)
+        annualCheckUpDate = findViewById(R.id.annualCheckUpDate);
         annualCheckUpDate.setInputType(InputType.TYPE_NULL);
         annualCheckUpDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,22 +97,18 @@ public class UpdateProfile extends AppCompatActivity {
                 int year = cldr.get(Calendar.YEAR);
 
                 //date picker dialog
-                picker = new DatePickerDialog(AddMeds.this, new DatePickerDialog.OnDateSetListener() {
+                picker[0] = new DatePickerDialog(UpdateProfile.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        DateGiven.setText((month+1)+"/"+dayOfMonth+"/"+year);
+                        annualCheckUpDate.setText((month+1)+"/"+dayOfMonth+"/"+year);
                     }
                 },year,month,day);
-                picker.show();
+                picker[0].show();
             }
         });
         submit = findViewById(R.id.submit);
-
         ProfileNode = FirebaseDatabase.getInstance();
-        String currentUser = mAuth.getInstance().getCurrentUser().getUid();
-    }
-}
- /*       userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup userType, int checkedId) {
                 RadioButton checkedRadioButton = (RadioButton) findViewById(checkedId);
@@ -126,11 +117,9 @@ public class UpdateProfile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), userTypeText, Toast.LENGTH_SHORT).show();
             }
         });
+        String currentUser = mAuth.getInstance().getCurrentUser().getUid();
     }
-
 }
-
-  */
 
 
 
