@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddDiet extends AppCompatActivity {
 
-    EditText calorie, water, Food, recipes, description, articles = findViewById(R.id.articles), notes;
+    EditText calorie, water, Food, recipes, description, notes, articles;
     Button submit;
     User user;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -23,6 +23,7 @@ public class AddDiet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_diet);
+        articles = findViewById(R.id.articles);
         user = getIntent().getParcelableExtra("User");
         calorie = findViewById(R.id.calorie);
         water = findViewById(R.id.water);

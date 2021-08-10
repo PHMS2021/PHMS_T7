@@ -29,6 +29,7 @@
     <string name="select_date">Select Date</string>
     <string name="annual_checkup_date">Annual Checkup Date:</string>
     <string name="weight">Weight</string>
+    <string name="general_notes">General Notes</string>
 
     <string-array name="MedMeasurements">
         <item>select</item>

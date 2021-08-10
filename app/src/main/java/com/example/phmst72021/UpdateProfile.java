@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -18,7 +17,6 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
@@ -27,8 +25,7 @@ import java.util.Objects;
 
 public class UpdateProfile extends AppCompatActivity {
     FirebaseDatabase ProfileNode;
-    DatabaseReference ref;
-    FirebaseAuth mAuth;
+
     EditText email;
     EditText userName;
     Spinner gender;
@@ -62,9 +59,7 @@ public class UpdateProfile extends AppCompatActivity {
     Intent intent;
     Context context;
     LinearLayout doctors;
-    private Calendar calendar;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +79,7 @@ public class UpdateProfile extends AppCompatActivity {
         doctorName =  findViewById(R.id.doctor_name);
         visitDate = findViewById(R.id.visit_date);
         gender = findViewById(R.id.gender);
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);

@@ -1,77 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#0f3b52"
-    tools:context=".UpdateProfile"
-    tools:ignore="ScrollViewCount">
-    <RadioButton
-        android:id="@+id/patient"
-        style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:enabled="false"
-        android:text="@string/patient"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
-    <RadioButton
-        android:id="@+id/careTaker"
-        style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:enabled="false"
-        android:text="@string/caretaker"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+    tools:context=".UpdateProfile">
 
-    <EditText
-        android:id="@+id/Username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/round_grey"
-        android:drawableStart="@drawable/ic_baseline_person_outline_24"
-        android:enabled="false"
-        android:gravity="center"
-        android:hint="@string/user_name"
-        android:inputType="text"
-        android:paddingStart="10dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:autofillHints=""
-        tools:ignore="RtlSymmetry" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:layout_marginBottom="20dp">
-        <EditText
-            android:id="@+id/email1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/round_grey"
-            android:drawableStart="@drawable/ic_baseline_person_outline_24"
-            android:enabled="false"
             android:gravity="center"
-            android:hint="@string/email_address"
-            android:inputType="textEmailAddress"
-            android:paddingStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:autofillHints=""
-            tools:ignore="RtlSymmetry">
-
-        </EditText>
-    </LinearLayout>
+            android:layout_height="100dp">
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:text="@string/patient"
+                    android:textSize="20sp"
+                    android:layout_marginHorizontal="20sp"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:text="@string/caretaker"
+                    android:layout_marginHorizontal="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:paddingLeft="50sp"
+            android:paddingRight="50sp"
+            android:layout_marginBottom="20sp">
+            <EditText
+                android:id="@+id/Username"
+                android:background="@drawable/round_grey"
+                android:drawableStart="@drawable/ic_baseline_person_outline_24"
+                android:paddingStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="5sp"
+                android:hint="@string/user_name"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:autofillHints=""
+                android:inputType="text"
+                tools:ignore="RtlSymmetry">
+            </EditText>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -80,19 +70,18 @@
             android:layout_marginBottom="20dp">
             <EditText
                 android:id="@+id/patient_name_first"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/round_grey"
                 android:drawableStart="@drawable/ic_baseline_lock_24"
-                android:gravity="center"
-                android:hint="@string/first_name"
-                android:inputType="text"
                 android:paddingStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:gravity="center"
                 android:textSize="20sp"
-                android:autofillHints=""
                 tools:ignore="RtlSymmetry">
             </EditText>
         </LinearLayout>
@@ -104,23 +93,21 @@
             android:layout_marginBottom="20dp">
             <EditText
                 android:id="@+id/patient_name_middle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/round_grey"
                 android:drawableStart="@drawable/ic_person"
-                android:gravity="center"
-                android:hint="@string/middle_name"
-                android:inputType="text"
                 android:paddingStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:autofillHints=""
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="Name of Patient"
+                android:gravity="center"
+                android:textSize="20dp"
                 tools:ignore="RtlSymmetry">
             </EditText>
         </LinearLayout>
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingLeft="50dp"
@@ -128,22 +115,21 @@
             android:layout_marginBottom="20dp">
             <EditText
                 android:id="@+id/patient_name_last"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/round_grey"
                 android:drawableStart="@drawable/ic_baseline_lock_24"
-                android:gravity="center"
-                android:hint="@string/last_name"
-                android:inputType="text"
                 android:paddingStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:gravity="center"
                 android:textSize="20sp"
-                android:autofillHints=""
                 tools:ignore="RtlSymmetry">
             </EditText>
-        </LinearLayout>
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -152,18 +138,16 @@
             android:layout_marginBottom="20dp">
             <Spinner
                 android:id="@+id/gender"
+                android:background="@drawable/round_grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/round_grey"
-                android:drawableStart="@drawable/ic_gender"
-                android:gravity="center"
-                android:paddingStart="10dp"
-                android:spinnerMode="dropdown"
+                android:drawableLeft="@drawable/ic_gender"
+                android:paddingLeft="10dp"
                 android:textColor="@color/black"
-                tools:ignore="RtlSymmetry">
-            </Spinner>
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:spinnerMode="dropdown"
+                android:gravity="center"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,18 +160,15 @@
                 android:background="@drawable/round_grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/ic_age"
-                android:paddingStart="10dp"
+                android:drawableLeft="@drawable/ic_age"
+                android:paddingLeft="10dp"
                 android:textColor="@color/black"
-                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:inputType="number"
                 android:layout_marginTop="5dp"
-                android:hint="@string/age"
+                android:hint="Age"
                 android:gravity="center"
-                android:textSize="20sp"
-                android:autofillHints=""
-                tools:ignore="RtlSymmetry">
-            </EditText>
+                android:textSize="20dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -200,18 +181,15 @@
                 android:background="@drawable/round_grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/ic_weight"
-                android:paddingStart="10dp"
+                android:drawableLeft="@drawable/ic_weight"
+                android:paddingLeft="10dp"
                 android:textColor="@color/black"
-                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:inputType="number"
-                android:hint="@string/weight"
+                android:hint="Weight"
                 android:gravity="center"
-                android:textSize="20sp"
-                tools:ignore="RtlSymmetry"
-                android:autofillHints="">
-            </EditText>
+                android:textSize="20dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -219,34 +197,21 @@
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:layout_marginBottom="20dp">
-            <TextView
-                android:id="@+id/annualCheckUpTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="left"
-                android:text="@string/annual_checkup_date"
-                android:textColor="#063970"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                tools:ignore="RtlHardcoded" />
             <EditText
                 android:id="@+id/annualCheckUpDate"
+                android:background="@drawable/round_grey"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_weight"
+                android:paddingLeft="10dp"
+                android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:background="@drawable/round_blue"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:inputType="none"
-                android:textStyle="bold"
-                android:hint="@string/select_date"
+                android:layout_marginTop="5dp"
+                android:inputType="number"
+                android:hint="Weight"
                 android:gravity="center"
-                tools:ignore="TextFields"
-                android:autofillHints="" />
-    </LinearLayout>
+                android:textSize="20dp"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -258,33 +223,52 @@
                 android:background="@drawable/round_grey"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/ic_height"
-                android:paddingStart="10dp"
+                android:drawableLeft="@drawable/ic_height"
+                android:paddingLeft="10dp"
                 android:textColor="@color/black"
                 android:inputType="number"
-                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:hint="@string/height"
+                android:hint="Height"
                 android:gravity="center"
-                android:textSize="20sp"
-                tools:ignore="RtlSymmetry"
-                android:autofillHints="">
-            </EditText>
+                android:textSize="20dp"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/doctors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginHorizontal="20dp">
-            <Button
-                android:id="@+id/submit_update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/white"
-                android:text="@string/update"
-                android:textColor="@color/purple_500"
-                android:textSize="20sp" />
+        <Button
+            android:id="@+id/addDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/round_primary"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="Add Doctor"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_gravity="center"
+            android:drawableRight="@drawable/ic_add"/>
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp">
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/white"
+            android:text="Submit"
+            android:textSize="20dp"/>
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

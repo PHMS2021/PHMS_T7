@@ -121,25 +121,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:drawableTop="@drawable/ic_baseline_note_24"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
         android:textColor="@color/black"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:hint="General Notes"
+        android:hint="@string/general_notes"
         android:gravity="top"
         >
     </EditText>
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/submit1"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:textColor="@color/purple_500"
         android:layout_marginVertical="10dp"
         android:backgroundTint="@color/white"
-        android:text="Submit"
-        android:textSize="20dp"
+        android:text="@string/submit"
+        android:textSize="20sp"
         />
 
 </ScrollView>
