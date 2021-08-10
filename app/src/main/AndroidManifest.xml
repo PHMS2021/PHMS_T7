@@ -21,8 +21,8 @@
         <activity
             android:name=".Home"
             android:exported="true" />
-        <activity
-            android:name=".MainActivity"/>
+        <!--<activity
+            android:name=".MainActivity"/>-->
         <activity android:name=".Login"
             android:label="Personal Health Management System"
             android:exported="true">
@@ -40,7 +40,8 @@
             android:label="Medication"/>
         <activity android:name=".AddMeds"
             android:label="Medication"/>
-        <activity android:name=".ViewMed"></activity>
+        <activity android:name=".ViewMed"
+            android:label="View Medication"></activity>
         <activity android:name=".Medication"
             android:label="Medication"/>
         <activity android:name=".Create_Account"

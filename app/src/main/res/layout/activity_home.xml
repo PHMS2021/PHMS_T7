@@ -74,7 +74,7 @@
         android:backgroundTint="#FFFCFC"
         android:onClick="onLogOutClick"
         android:text="@string/log_out"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         android:textColor="@color/purple_500"
         android:textSize="20sp" />
 

@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/MedImgBtnItem"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/medspic"
                 android:layout_gravity="center_vertical"
 
@@ -35,7 +35,7 @@
                 android:id="@+id/MedNameItem"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="15dp"
 
                 android:layout_gravity="center"
                 android:text="Medication"
@@ -57,7 +57,7 @@
                 android:textSize="20sp">
             </TextView>
 
-            <ImageButton
+            <!--<ImageButton
                 android:id="@+id/MedEditImgBtnItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_marginLeft="7dp"
                 android:padding="9dp"
                 app:srcCompat="@android:drawable/ic_menu_delete" />
-
+-->
         </TableRow>
 
         <TableRow
@@ -83,7 +83,7 @@
                 android:id="@+id/ExpDateTitleItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
                 android:text="Exp. Date:"
                 android:textColor="@color/black"
                 android:textSize="15sp">
@@ -104,7 +104,7 @@
                 android:id="@+id/AmountMedItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="35dp"
                 android:text="1500 mg"
                 android:textColor="@color/black"
                 android:textSize="15sp">

@@ -20,7 +20,7 @@ public class MedAlarmReciever extends BroadcastReceiver {
         message = extras.getString("Message");
 
         NotifyMedAlarm notifyMedAlarm = new NotifyMedAlarm(context);
-        NotificationCompat.Builder nb = notifyMedAlarm.getChannelNotification("PHMS Medication Alarm!","Take 30 mL of Tylenol");
+        NotificationCompat.Builder nb = notifyMedAlarm.getChannelNotification("PHMS Medication Alarm!","Take 10 mL of Tylenol");
         notifyMedAlarm.getManager().notify(1, nb.build());
     }
 

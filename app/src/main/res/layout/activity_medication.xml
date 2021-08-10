@@ -74,7 +74,7 @@
         android:layout_height="50dp"
         android:gravity="center"
 
-        android:text="View/Add/Edit Medications"
+        android:text="View/Add Medications"
         android:textColor="#063970"
         android:textSize="20sp"
         android:textStyle="bold" />

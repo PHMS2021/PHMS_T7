@@ -254,7 +254,7 @@
         android:id="@+id/NotesView"
         android:background="@drawable/round_grey"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="160dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:gravity="center"
